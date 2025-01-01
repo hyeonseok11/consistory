@@ -10,6 +10,10 @@ from consistory_pipeline import ConsistoryExtendAttnSDXLPipeline
 from consistory_utils import FeatureInjector, AnchorCache
 from utils.general_utils import *
 import gc
+import os
+from clip_score import get_clip_score
+import io
+from PIL import Image
 
 from utils.ptp_utils import view_images
 
@@ -75,76 +79,119 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                         seed=40, n_steps=50, mask_dropout=0.5,
                         same_latent=False, share_queries=True,
                         perform_sdsa=True, perform_injection=True,
-                        downscale_rate=4, n_achors=2):
+                        downscale_rate=4, n_achors=2,
+                        clip_threshold=0.28,
+                        max_attempts=10):  
     device = story_pipeline.device
     tokenizer = story_pipeline.tokenizer
     float_type = story_pipeline.dtype
     unet = story_pipeline.unet
 
     batch_size = len(prompts)
+    filtered_images = []
+    filtered_indices = []
+    remaining_indices = list(range(batch_size))
+    current_seed = seed if isinstance(seed, int) else seed[0]
+    clip_scores = []  # Store CLIP scores for each successful image
 
-    token_indices = create_token_indices(prompts, batch_size, concept_token, tokenizer)
-    anchor_mappings = create_anchor_mapping(batch_size, anchor_indices=list(range(n_achors)))
+    attempt = 0
+    while remaining_indices and attempt < max_attempts:
+        current_prompts = [prompts[i] for i in remaining_indices]
+        current_batch_size = len(current_prompts)
+        
+        token_indices = create_token_indices(current_prompts, current_batch_size, concept_token, tokenizer)
+        anchor_mappings = create_anchor_mapping(current_batch_size, anchor_indices=list(range(min(n_achors, current_batch_size))))
 
-    default_attention_store_kwargs = {
-        'token_indices': token_indices,
-        'mask_dropout': mask_dropout,
-        'extended_mapping': anchor_mappings
-    }
+        default_attention_store_kwargs = {
+            'token_indices': token_indices,
+            'mask_dropout': mask_dropout,
+            'extended_mapping': anchor_mappings
+        }
 
-    default_extended_attn_kwargs = {'extend_kv_unet_parts': ['up']}
-    query_store_kwargs= {'t_range': [0,n_steps//10], 'strength_start': 0.9, 'strength_end': 0.81836735}
+        default_extended_attn_kwargs = {'extend_kv_unet_parts': ['up']}
+        query_store_kwargs = {'t_range': [0,n_steps//10], 'strength_start': 0.9, 'strength_end': 0.81836735}
 
-    latents, g = create_latents(story_pipeline, seed, batch_size, same_latent, device, float_type)
+        latents, g = create_latents(story_pipeline, current_seed, current_batch_size, same_latent, device, float_type)
 
-    # ------------------ #
-    # Extended attention First Run #
+        if perform_sdsa:
+            extended_attn_kwargs = {**default_extended_attn_kwargs, 't_range': [(1, n_steps)]}
+        else:
+            extended_attn_kwargs = {**default_extended_attn_kwargs, 't_range': []}
 
-    if perform_sdsa:
-        extended_attn_kwargs = {**default_extended_attn_kwargs, 't_range': [(1, n_steps)]}
-    else:
-        extended_attn_kwargs = {**default_extended_attn_kwargs, 't_range': []}
-
-    print(extended_attn_kwargs['t_range'])
-    out = story_pipeline(prompt=prompts, generator=g, latents=latents, 
-                        attention_store_kwargs=default_attention_store_kwargs,
-                        extended_attn_kwargs=extended_attn_kwargs,
-                        share_queries=share_queries,
-                        query_store_kwargs=query_store_kwargs,
-                        num_inference_steps=n_steps)
-    last_masks = story_pipeline.attention_store.last_mask
-
-    dift_features = unet.latent_store.dift_features['261_0'][batch_size:]
-    dift_features = torch.stack([gaussian_smooth(x, kernel_size=3, sigma=1) for x in dift_features], dim=0)
-
-    nn_map, nn_distances = cyclic_nn_map(dift_features, last_masks, LATENT_RESOLUTIONS, device)
-
-    torch.cuda.empty_cache()
-    gc.collect()
-
-    # ------------------ #
-    # Extended attention with nn_map #
-    
-    if perform_injection:
-        feature_injector = FeatureInjector(nn_map, nn_distances, last_masks, inject_range_alpha=[(n_steps//10, n_steps//3,0.8)], 
-                                        swap_strategy='min', inject_unet_parts=['up', 'down'], dist_thr='dynamic')
-
-        out = story_pipeline(prompt=prompts, generator=g, latents=latents, 
+        out = story_pipeline(prompt=current_prompts, generator=g, latents=latents, 
                             attention_store_kwargs=default_attention_store_kwargs,
                             extended_attn_kwargs=extended_attn_kwargs,
                             share_queries=share_queries,
                             query_store_kwargs=query_store_kwargs,
-                            feature_injector=feature_injector,
                             num_inference_steps=n_steps)
-        img_all = view_images([np.array(x) for x in out.images], display_image=False, downscale_rate=downscale_rate)
-        # display_attn_maps(story_pipeline.attention_store.last_mask, out.images)
+        
+        last_masks = story_pipeline.attention_store.last_mask
+        dift_features = unet.latent_store.dift_features['261_0'][current_batch_size:]
+        dift_features = torch.stack([gaussian_smooth(x, kernel_size=3, sigma=1) for x in dift_features], dim=0)
+        nn_map, nn_distances = cyclic_nn_map(dift_features, last_masks, LATENT_RESOLUTIONS, device)
 
         torch.cuda.empty_cache()
         gc.collect()
+
+        if perform_injection:
+            feature_injector = FeatureInjector(nn_map, nn_distances, last_masks, inject_range_alpha=[(n_steps//10, n_steps//3,0.8)], 
+                                            swap_strategy='min', inject_unet_parts=['up', 'down'], dist_thr='dynamic')
+
+            out = story_pipeline(prompt=current_prompts, generator=g, latents=latents, 
+                                attention_store_kwargs=default_attention_store_kwargs,
+                                extended_attn_kwargs=extended_attn_kwargs,
+                                share_queries=share_queries,
+                                query_store_kwargs=query_store_kwargs,
+                                feature_injector=feature_injector,
+                                num_inference_steps=n_steps)
+
+            # Check CLIP scores for current batch
+            new_remaining_indices = []
+            for batch_idx, image in enumerate(out.images):
+                original_idx = remaining_indices[batch_idx]
+                # Convert PIL image to bytes for CLIP score calculation
+                with io.BytesIO() as bio:
+                    image.save(bio, format='PNG')
+                    image_bytes = bio.getvalue()
+                with io.BytesIO(image_bytes) as bio:
+                    temp_image = Image.open(bio)
+                    clip_score = get_clip_score(temp_image, prompts[original_idx])
+                
+                print(f"Image {original_idx} CLIP score: {clip_score}")
+                
+                if clip_score >= clip_threshold:
+                    filtered_images.append(image)
+                    filtered_indices.append(original_idx)
+                    clip_scores.append(clip_score)
+                else:
+                    new_remaining_indices.append(original_idx)
+
+            remaining_indices = new_remaining_indices
+            current_seed += 1
+            attempt += 1
+
+            torch.cuda.empty_cache()
+            gc.collect()
+        else:
+            filtered_images = out.images
+            filtered_indices = list(range(len(out.images)))
+            clip_scores = [0.0] * len(out.images)  # Default scores for non-injection mode
+            remaining_indices = []
+
+    if filtered_images:
+        # Sort images by original indices
+        sorted_pairs = sorted(zip(filtered_indices, filtered_images, clip_scores), key=lambda x: x[0])
+        filtered_images = [img for _, img, _ in sorted_pairs]
+        clip_scores = [score for _, _, score in sorted_pairs]
+        img_all = view_images([np.array(x) for x in filtered_images], display_image=False, downscale_rate=downscale_rate)
     else:
-        img_all = view_images([np.array(x) for x in out.images], display_image=False, downscale_rate=downscale_rate)
+        img_all = None
+        print("No images met the CLIP score threshold after maximum attempts.")
+
+    if remaining_indices:
+        print(f"Warning: Could not generate satisfactory images for indices {remaining_indices} after {max_attempts} attempts")
     
-    return out.images, img_all
+    return filtered_images, img_all, clip_scores
 
 # Anchors
 def run_anchor_generation(story_pipeline, prompts, concept_token,

@@ -5,7 +5,14 @@
 
 import os
 import argparse
+import yaml
 from consistory_run import load_pipeline, run_batch_generation, run_anchor_generation, run_extra_generation
+
+def print_args(args):
+    print("\n=== Configuration ===")
+    for arg in vars(args):
+        print(f"{arg}: {getattr(args, arg)}")
+    print("===================\n")
 
 def run_batch(gpu, seed=40, mask_dropout=0.5, same_latent=False,
               style="A photo of ", subject="a cute dog", concept_token=['dog'],
@@ -71,6 +78,7 @@ def run_cached_anchors(gpu, seed=40, mask_dropout=0.5, same_latent=False,
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=str, help='Path to YAML config file')
     parser.add_argument('--run_type', default="batch", type=str, required=False) # batch, cached
     parser.add_argument('--gpu', default=0, type=int, required=False)
     parser.add_argument('--seed', default=40, type=int, required=False)
@@ -89,6 +97,20 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    # Load config from YAML if provided
+    if args.config:
+        print(f"\nLoading configuration from {args.config}")
+        with open(args.config, 'r') as f:
+            config = yaml.safe_load(f)
+            # Update args with config values, CLI arguments take precedence
+            args_dict = vars(args)
+            for key, value in config.items():
+                if key in args_dict and args_dict[key] == parser.get_default(key):  # Only update if arg is at default value
+                    setattr(args, key, value)
+        
+    # Print final configuration
+    print_args(args)
+
     if args.out_dir is not None:
         os.makedirs(args.out_dir, exist_ok=True)
 
@@ -98,7 +120,7 @@ if __name__ == '__main__':
                   args.clip_threshold)
     elif args.run_type == "cached":
         run_cached_anchors(args.gpu, args.seed, args.mask_dropout, args.same_latent, args.style, 
-                           args.subject, args.concept_token, args.settings,
-                           args.cache_cpu_offloading, args.out_dir, args.clip_threshold)
+                  args.subject, args.concept_token, args.settings, args.cache_cpu_offloading, args.out_dir,
+                  args.clip_threshold)
     else:
         print("Invalid run type")

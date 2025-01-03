@@ -2,6 +2,8 @@
 #
 # This work is licensed under the LICENSE file
 # located at the root directory.
+# python consistory_CLI.py --config config.yaml
+
 
 import os
 import argparse

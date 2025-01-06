@@ -22,14 +22,20 @@ def run_batch(gpu, seed=40, mask_dropout=0.5, same_latent=False,
     story_pipeline = load_pipeline(gpu)
     prompts = [f'{style}{subject} {setting}' for setting in settings]
 
+    # Set default output directory if not specified
+    if out_dir is None:
+        out_dir = os.path.join(os.path.dirname(__file__), 'dataset')
+    elif not os.path.isabs(out_dir):
+        out_dir = os.path.join(os.path.dirname(__file__), 'dataset', out_dir)
+    os.makedirs(out_dir, exist_ok=True)
+
     images, image_all, clip_scores = run_batch_generation(
         story_pipeline, prompts, concept_token, seed, 
         mask_dropout=mask_dropout, same_latent=same_latent,
         clip_threshold=clip_threshold
     )
 
-    if out_dir is not None and images:
-        os.makedirs(out_dir, exist_ok=True)
+    if images:
         for i, (image, score) in enumerate(zip(images, clip_scores)):
             image_path = f'{out_dir}/image_{i}.png'
             image.save(image_path)
@@ -38,14 +44,21 @@ def run_batch(gpu, seed=40, mask_dropout=0.5, same_latent=False,
     return images, image_all
 
 def run_cached_anchors(gpu, seed=40, mask_dropout=0.5, same_latent=False,
-                style="A photo of ", subject="a cute dog", concept_token=['dog'],
-                settings=["sitting in the beach", "standing in the snow"],
-                cache_cpu_offloading=False, out_dir=None, clip_threshold=0.28):
+                      style="A photo of ", subject="a cute dog", concept_token=['dog'],
+                      settings=["sitting in the beach", "standing in the snow"],
+                      cache_cpu_offloading=False, out_dir=None, clip_threshold=0.28):
     
     story_pipeline = load_pipeline(gpu)
     prompts = [f'{style}{subject} {setting}' for setting in settings]
     anchor_prompts = prompts[:2]
     extra_prompts = prompts[2:]
+
+    # Set default output directory if not specified
+    if out_dir is None:
+        out_dir = os.path.join(os.path.dirname(__file__), 'dataset')
+    elif not os.path.isabs(out_dir):
+        out_dir = os.path.join(os.path.dirname(__file__), 'dataset', out_dir)
+    os.makedirs(out_dir, exist_ok=True)
 
     anchor_out_images, anchor_image_all, anchor_scores, anchor_cache_first_stage, anchor_cache_second_stage = run_anchor_generation(
         story_pipeline, anchor_prompts, concept_token, 
@@ -54,31 +67,31 @@ def run_cached_anchors(gpu, seed=40, mask_dropout=0.5, same_latent=False,
         clip_threshold=clip_threshold
     )
     
-    if out_dir is not None and anchor_out_images:
-        os.makedirs(out_dir, exist_ok=True)
+    if anchor_out_images:
         for i, (image, score) in enumerate(zip(anchor_out_images, anchor_scores)):
             image_path = f'{out_dir}/anchor_image_{i}.png'
             image.save(image_path)
-            print(f"Saved anchor image {i} with CLIP score: {score:.4f} at {image_path}")
-
-    for i, extra_prompt in enumerate(extra_prompts):
-        extra_out_images, extra_image_all, extra_scores = run_extra_generation(
-            story_pipeline, [extra_prompt], concept_token, 
-            anchor_cache_first_stage, anchor_cache_second_stage, 
-            seed=seed, mask_dropout=mask_dropout, same_latent=same_latent,
-            cache_cpu_offloading=cache_cpu_offloading,
-            clip_threshold=clip_threshold
-        )
-        
-        if out_dir is not None and extra_out_images:
-            for j, (image, score) in enumerate(zip(extra_out_images, extra_scores)):
-                image_path = f'{out_dir}/extra_image_{i}_{j}.png'
-                image.save(image_path)
-                print(f"Saved extra image {i}_{j} with CLIP score: {score:.4f} at {image_path}")
+            print(f'Saved anchor image {i} with CLIP score: {score:.4f} at {image_path}')
+    
+    if len(extra_prompts) > 0:
+        for i, extra_prompt in enumerate(extra_prompts):
+            extra_out_images, extra_image_all, extra_scores = run_extra_generation(
+                story_pipeline, [extra_prompt], concept_token, 
+                anchor_cache_first_stage, anchor_cache_second_stage, 
+                seed=seed, mask_dropout=mask_dropout, same_latent=same_latent,
+                cache_cpu_offloading=cache_cpu_offloading,
+                clip_threshold=clip_threshold
+            )
+            
+            if extra_out_images:
+                for j, (image, score) in enumerate(zip(extra_out_images, extra_scores)):
+                    image_path = f'{out_dir}/extra_image_{i}_{j}.png'
+                    image.save(image_path)
+                    print(f'Saved extra image {i}_{j} with CLIP score: {score:.4f} at {image_path}')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, help='Path to YAML config file')
+    parser.add_argument('--config', type=str, help='Path to YAML config file in config directory')
     parser.add_argument('--run_type', default="batch", type=str, required=False) # batch, cached
     parser.add_argument('--gpu', default=0, type=int, required=False)
     parser.add_argument('--seed', default=40, type=int, required=False)
@@ -99,8 +112,9 @@ if __name__ == '__main__':
 
     # Load config from YAML if provided
     if args.config:
-        print(f"\nLoading configuration from {args.config}")
-        with open(args.config, 'r') as f:
+        config_path = os.path.join(os.path.dirname(__file__), 'config', args.config)
+        print(f"\nLoading configuration from {config_path}")
+        with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
             # Update args with config values, CLI arguments take precedence
             args_dict = vars(args)
@@ -110,9 +124,6 @@ if __name__ == '__main__':
         
     # Print final configuration
     print_args(args)
-
-    if args.out_dir is not None:
-        os.makedirs(args.out_dir, exist_ok=True)
 
     if args.run_type == "batch":
         run_batch(args.gpu, args.seed, args.mask_dropout, args.same_latent, args.style, 

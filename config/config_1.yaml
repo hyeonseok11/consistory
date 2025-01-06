@@ -1,0 +1,18 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.5
+same_latent: false
+style: "A photo of"
+subject: "white man who is 30 years old"
+concept_token:
+  - "white man" 
+  - "30 years old"
+settings:
+  - "in a bright gray studio, wearing a suit jacket, plain tie (optional), and shirt, facing forward with a serious expression, hands lowered, and no props. The atmosphere is strict and formal, ideal for business cards or LinkedIn profiles."
+  - "in an office, wearing a jacket and blouse with a sharp collar, standing at a slight 45-degree angle, looking directly at the camera."
+  - "outdoors near a building wall (clean concrete) with a blurred urban background, wearing a shirt and suit pants or a jacket draped, standing upright with a slight smile. No props. The look is urban, sleek, and formal."
+  - "in an office hallway with frosted glass doors (no visible company name), wearing a suit or blouse with polished shoes, standing slightly sideways with the head turned toward the camera. The image resembles an official company photo, highlighting professionalism."
+  - "in a black or dark gray studio background with dynamic lighting, wearing a well-fitted dark-toned suit jacket, posing with arms crossed or hands neatly clasped. The atmosphere is calm and exudes business expertise."
+out_dir: "condition_1"
+clip_threshold: 0.28

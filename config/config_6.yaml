@@ -1,18 +1,19 @@
 run_type: batch
 gpu: 0
 seed: 40
-mask_dropout: 0.5
+mask_dropout: 0.3
 same_latent: false
 style: "A photo of"
 subject: "an young white man"
 concept_token:
   - "young white man"
+  - "short hair"
 settings:
-  - "Rooftop with city skyline, wearing a casual T-shirt and pants, leaning on a railing, smiling at the camera, no props"
-  - "Cafe or lounge, seated at a table with a jacket and jeans, looking directly at the camera, not touching the drink"
-  - "Famous landmark background, light travel attire (jacket or camera bag), pointing at the monument or making a V sign, holding a small travel bag"
-  - "Spectacular natural scenery (waterfall, canyon, etc.), wearing a casual T-shirt, pants, and sneakers, simply standing and looking at the view or camera, minimal props"
-  - "Beach sunbed area with umbrellas, wearing a swimsuit and sunglasses, lying on a sunbed tanning or lightly holding a drink, sun lotion or towel nearby"
-  - "Infinity pool in a luxury resort, ocean or city skyline in the distance, wearing a flashy swimsuit, possibly sunglasses or a large hat, sitting by the pool edge with a cocktail glass or float tube, posing for the camera"
+  - "with short hair wearing a casual T-shirt and pants on a rooftop with a city skyline."
+  - "with short hair wearing a jacket and jeans in a cafe or lounge, not touching the drink."
+  - "with short hair wearing light travel attire near a famous landmark, pointing or making a V sign."
+  - "with short hair wearing casual clothes in front of a grand natural scenery, simply standing or looking."
+  - "with short hair wearing a swimsuit and sunglasses on a beach sunbed, lightly holding a drink but not drinking."
+  - "with short hair wearing a flashy swimsuit at an infinity pool, sitting by the edge with a cocktail glass, posing for the camera."
 out_dir: "condition_6"
 clip_threshold: 0.28

@@ -1,20 +1,20 @@
 run_type: batch
 gpu: 0
 seed: 40
-mask_dropout: 0.5
+mask_dropout: 0.4
 same_latent: false
 style: "A photo of"
 subject: "an young white man"
 concept_token:
   - "young white man"
+  - "short hair"
 settings:
-  - "Forest hiking trail, wearing hiking clothes, boots, backpack, wiping sweat or drinking water, with a hiking stick and a snack bar"
-  - "River bike path, wearing a helmet and cycling attire, stretching next to a parked bicycle, water bottle, phone mount"
-  - "Campsite with a tent and campfire, wearing an outdoor jacket and comfy pants, warming hands by the fire or resting on a camping chair, lantern, gas burner"
-  - "Lake or riverside near a kayak rental, wearing a life jacket and athletic bottoms, holding a paddle, about to kayak, kayak, paddle, water bottle"
-  - "Riverside running track, wearing running shoes and workout clothes, sweating, either mid-run or checking a running app, smartwatch, phone armband, water bottle"
-  - "Park soccer field or local sports ground with a distant goalpost, wearing a plain soccer jersey, cleats, dribbling or kicking a ball, cones nearby"
-  - "Snowy ski slope with a lift in the background, wearing ski gear with helmet or goggles, gloves, skiing downhill or standing ready, ski set, slope sign"
-  - "Golf or tennis court, wearing sports attire, holding a club or racket, sports shoes, practicing swing or preparing to play"
+  - "with short hair wearing hiking clothes and a backpack on a forest mountain trail."
+  - "with short hair wearing a helmet and cycling attire on a riverside bike path."
+  - "with short hair wearing an outdoor jacket and comfortable pants at a campsite near a campfire."
+  - "with short hair wearing a life vest and athletic bottoms by a kayak rental area."
+  - "with short hair wearing running shoes and workout clothes on a riverside running track."
+  - "with short hair wearing a soccer uniform on a park field with a visible goalpost."
+  - "with short hair wearing ski gear on a snowy slope with a ski lift in the background"
 out_dir: "condition_4"
 clip_threshold: 0.28

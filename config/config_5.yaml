@@ -1,17 +1,18 @@
-run_type: batch
+run_type: cached
 gpu: 0
 seed: 40
-mask_dropout: 0.5
+mask_dropout: 0.4
 same_latent: false
 style: "A photo of"
 subject: "an young white man"
 concept_token:
   - "young white man"
+  - "short hair"
 settings:
-  - "Cozy home kitchen or living area, wearing an apron over casual clothes, mixing dough or baking cookies, measuring cups and flour nearby"
-  - "Personal room or practice studio with soundproof walls, wearing a T-shirt and jeans, playing guitar or keyboard with headphones, sheet music stand"
-  - "Stylish cafe interior, wearing casual knit top and skirt/jeans, reading a book or magazine, making notes and sipping coffee"
-  - "Cinema lobby with movie posters on the wall, wearing a hoodie and jeans, holding popcorn and a drink, heading toward the screening room"
-  - "Room with a gaming setup and LED lights, wearing a hoodie, jeans, and slippers, focused on an online game with a headset, RGB mouse and keyboard, drink nearby"
+  - "with short hair wearing an apron in a cozy kitchen with warm lighting."
+  - "with short hair wearing a T-shirt and jeans in a soundproof practice room."
+  - "with short hair wearing casual knit in a stylish cafe interior."
+  - "with short hair wearing a hoodie and jeans in a cinema lobby with movie posters."
+  - "with short hair wearing a hoodie, jeans, and slippers in a gaming room with LED lighting."
 out_dir: "condition_5"
 clip_threshold: 0.28

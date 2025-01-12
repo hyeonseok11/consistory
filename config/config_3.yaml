@@ -1,17 +1,18 @@
 run_type: batch
 gpu: 0
 seed: 40
-mask_dropout: 0.5
+mask_dropout: 0.4
 same_latent: false
 style: "A photo of"
 subject: "an young white man"
 concept_token:
-  - "young white man"
+  - "youn white man"
+  - "short hair"
 settings:
-  - "in a Animal shelter with multiple cages, wearing a volunteer T-shirt, comfortable pants, and a mask, cleaning dog kennels with a mop or broom, wiping sweat, trash bag and disinfectant nearby, dogs around"
-  - "in a Park cleanup booth with a 'Clean Park!' banner, wearing sneakers, gloves, and a volunteer cap, holding a trash bag, picking up leaves or plastic bottles with a grabber, disposable gloves"
-  - "in a Local event hall showing a 'Free Meal Service' sign, wearing an apron and a hairnet, holding a ladle while serving food, trays and side dishes visible"
-  - "in a Blood donation center with a 'Donate Life' poster, wearing casual T-shirt and jeans, lying on a donation chair for blood draw, nurse in background, blood bag, syringe, blood pressure monitor"
-  - "in a Community center with a 'Help the Elderly' banner, wearing a volunteer badge and warm clothing, packing food items like ramen and canned goods into boxes, loading them onto a truck or delivering"
-out_dir: "condition_3"
+  - "with short hair, wearing a volunteer T-shirt in an animal shelter."
+  - "with short hair, wearing gloves at a park cleanup."
+  - "with short hair, wearing an apron at a free meal service."
+  - "with short hair, wearing casual clothes in a blood donation center."
+  - "with short hair, wearing a volunteer badge at a community center."
+out_dir: "condition_3" 
 clip_threshold: 0.28

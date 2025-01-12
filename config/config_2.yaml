@@ -1,17 +1,18 @@
 run_type: batch
 gpu: 0
 seed: 40
-mask_dropout: 0.5
+mask_dropout: 0.4
 same_latent: false
 style: "A photo of"
 subject: "an white man"
 concept_token:
   - "white man"
+  - "30 years olds"
+  - "short hair"
 settings:
-  - "with Office desk, partition, shirt, casual pants, shoes, focused on laptop, one hand on keyboard, documents"
-  - "in a Meeting room, TV monitor, jacket, printed docs, laptop, pen notes, coffee, papers"
-  - "in aCo-working lounge, hoodie, jeans, laptop with spreadsheet, one hand on forehead, scattered papers, drink"
-  - "in aCafe interior, shirt, knit top, typing on laptop, coffee nearby, mousepad, earphones, charger"
-  - "in a Meeting room, blurred whiteboard, casual shirt, pants, sneakers, pointing while typing, marker, papers"
+  - "who is 30 years old, with short hair, wearing a shirt in an office."
+  - "who is 30 years old, with short hair, wearing a hoodie in a co-working lounge."
+  - "who is 30 years old, with short hair, wearing a shirt in a cafe."
+  - "who is 30 years old, with short hair, wearing a casual shirt in a meeting room."
 out_dir: "condition_2"
 clip_threshold: 0.28

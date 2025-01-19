@@ -31,7 +31,7 @@ def check_image_with_gpt4o(image, prompt):
     unrealistic shadows, harsh shadows, wrong perspective, motion blur, camera shake, tilted horizon, oversaturated colors, double head, double face, 
     symmetrical issues, disfigured face, incomplete anatomy, large text, repeated text, overexposed, underexposed, cartoonish, missing limbs, extreme muscle definition, 
     extra clothing, random floating objects, glitchy, pixelated, chromatic aberration, twised hands, mutated hands, mutated feet, mutated legs, mutated arms, mutated body
-    
+    - especially check about the hands. (ex. distored hands)
     Respond with 'PASS' if the image looks natural and consistent, or 'FAIL' with a brief explanation if you find any issues.
     """
     

@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, adjusting mixing board in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, recording music in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, playing instruments in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, producing tracks in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, setting up microphones"
+      - "who is 30 years old, with short hair, wearing casual clothes, editing audio in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, arranging equipment in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, testing sound levels"
+      - "who is 30 years old, with short hair, wearing casual clothes, composing music in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, checking audio quality"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, mixing tracks in studio"
+      - "who is 30 years old, with short hair, wearing casual clothes, operating studio console"
+      - "who is 30 years old, with short hair, wearing casual clothes, setting up studio gear"
+      - "who is 30 years old, with short hair, wearing casual clothes, monitoring recording session"
+      - "who is 30 years old, with short hair, wearing casual clothes, adjusting studio equipment"
+      - "who is 30 years old, with short hair, wearing casual clothes, working on sound design"
+      - "who is 30 years old, with short hair, wearing casual clothes, organizing studio setup"
+      - "who is 30 years old, with short hair, wearing casual clothes, calibrating studio tools"
+      - "who is 30 years old, with short hair, wearing casual clothes, reviewing audio tracks"
+      - "who is 30 years old, with short hair, wearing casual clothes, programming beats in studio"
+
+out_dir: "condition_5/2"
+clip_threshold: 0.28

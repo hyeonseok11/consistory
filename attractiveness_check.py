@@ -24,7 +24,9 @@ def check_criteria(result):
     
     for key, valid_values in criteria.items():
         if result[key].lower() not in valid_values:
+            print(f"Criteria not met: {key} - {result[key]}")
             return False
+    print("All criteria met")
     return True
 
 def attractiveness_check(image):

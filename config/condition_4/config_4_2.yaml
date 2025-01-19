@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a life vest, preparing kayak equipment"
+      - "who is 30 years old, with short hair, wearing a life vest, paddling through calm waters"
+      - "who is 30 years old, with short hair, wearing a life vest, launching kayak from shore"
+      - "who is 30 years old, with short hair, wearing a life vest, checking kayak safety gear"
+      - "who is 30 years old, with short hair, wearing a life vest, navigating river currents"
+      - "who is 30 years old, with short hair, wearing a life vest, exploring lake shores"
+      - "who is 30 years old, with short hair, wearing a life vest, adjusting kayak position"
+      - "who is 30 years old, with short hair, wearing a life vest, gliding across water"
+      - "who is 30 years old, with short hair, wearing a life vest, observing water wildlife"
+      - "who is 30 years old, with short hair, wearing a life vest, planning kayak route"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a life vest, maneuvering through waters"
+      - "who is 30 years old, with short hair, wearing a life vest, enjoying kayak adventure"
+      - "who is 30 years old, with short hair, wearing a life vest, paddling scenic routes"
+      - "who is 30 years old, with short hair, wearing a life vest, exploring water paths"
+      - "who is 30 years old, with short hair, wearing a life vest, checking water conditions"
+      - "who is 30 years old, with short hair, wearing a life vest, steering kayak direction"
+      - "who is 30 years old, with short hair, wearing a life vest, crossing peaceful waters"
+      - "who is 30 years old, with short hair, wearing a life vest, discovering water trails"
+      - "who is 30 years old, with short hair, wearing a life vest, practicing kayak skills"
+      - "who is 30 years old, with short hair, wearing a life vest, exploring water views"
+
+out_dir: "condition_4/2"
+clip_threshold: 0.28

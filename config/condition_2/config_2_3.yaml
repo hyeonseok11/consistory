@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a neat shirt while working on a laptop at a trendy cafe"
+      - "who is 30 years old, with short hair, in a crisp shirt, focused on their laptop at a coffee shop"
+      - "who is 30 years old, with short hair, sporting a clean shirt at a bustling cafe with their computer"
+      - "who is 30 years old, with short hair, wearing a tidy shirt while remote working from a cafe"
+      - "who is 30 years old, with short hair, in a smart shirt at a cozy coffee shop with their laptop"
+      - "who is 30 years old, with short hair, donning a neat shirt while typing at a cafe workspace"
+      - "who is 30 years old, with short hair, wearing a proper shirt at a modern cafe with their computer"
+      - "who is 30 years old, with short hair, in a fresh shirt while working at a cafe corner"
+      - "who is 30 years old, with short hair, sporting a clean-cut shirt at a cafe workstation"
+      - "who is 30 years old, with short hair, wearing a sharp shirt while computing at a coffee house"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, in a neat shirt during a cafe work session"
+      - "who is 30 years old, with short hair, wearing a pristine shirt at a cafe table with laptop"
+      - "who is 30 years old, with short hair, sporting a tidy shirt while cafe working"
+      - "who is 30 years old, with short hair, in a well-pressed shirt at a coffee shop desk"
+      - "who is 30 years old, with short hair, wearing a proper shirt during a cafe work break"
+      - "who is 30 years old, with short hair, donning a smart shirt at a cafe study space"
+      - "who is 30 years old, with short hair, in a crisp shirt while working at a coffee bar"
+      - "who is 30 years old, with short hair, wearing a neat shirt at a cafe window seat"
+      - "who is 30 years old, with short hair, sporting a clean shirt in a cafe environment"
+      - "who is 30 years old, with short hair, in a sharp shirt at a coffee shop workspace"
+
+out_dir: "condition_2/3"
+clip_threshold: 0.28

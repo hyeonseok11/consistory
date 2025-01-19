@@ -13,6 +13,7 @@ import gc
 import os
 from clip_score import get_clip_score
 from gpt4o_check import check_image_with_gpt4o
+from attractiveness_check import attractiveness_check
 import io
 from PIL import Image
 
@@ -93,7 +94,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                         perform_sdsa=True, perform_injection=True,
                         downscale_rate=4, n_achors=2,
                         clip_threshold=0.28,
-                        max_attempts=10):  
+                        max_attempts=5):  
     device = story_pipeline.device
     tokenizer = story_pipeline.tokenizer
     float_type = story_pipeline.dtype
@@ -104,6 +105,9 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
     filtered_indices = []
     remaining_indices = list(range(batch_size))
     clip_scores = []  # Store CLIP scores for each successful image
+    previous_scores = {}  # Store previous CLIP scores for each index
+    current_seed = seed  # Track current seed
+    validation_results = [None] * batch_size  # Initialize with None for each batch index
 
     attempt = 0
     current_mask_dropout = mask_dropout
@@ -123,7 +127,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
         default_extended_attn_kwargs = {'extend_kv_unet_parts': ['up']}
         query_store_kwargs = {'t_range': [0,n_steps//10], 'strength_start': 0.9, 'strength_end': 0.81836735}
 
-        latents, g = create_latents(story_pipeline, seed, current_batch_size, same_latent, device, float_type)
+        latents, g = create_latents(story_pipeline, current_seed, current_batch_size, same_latent, device, float_type)
 
         if perform_sdsa:
             extended_attn_kwargs = {**default_extended_attn_kwargs, 't_range': [(1, n_steps)]}
@@ -161,8 +165,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
 
             # Check CLIP scores for current batch
             new_remaining_indices = []
-            for batch_idx, image in enumerate(out.images):
-                original_idx = remaining_indices[batch_idx]
+            for batch_idx, (image, original_idx) in enumerate(zip(out.images, remaining_indices)):
                 # Convert PIL image to bytes for CLIP score calculation
                 with io.BytesIO() as bio:
                     image.save(bio, format='PNG')
@@ -173,11 +176,40 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                 
                 print(f"Image {original_idx} CLIP score: {clip_score}")
                 
-                if clip_score >= clip_threshold and check_image_with_gpt4o(image, prompts[original_idx]):
+                # Check validation criteria sequentially
+                passed_clip = clip_score >= clip_threshold
+                passed_gpt4v = False
+                passed_attractiveness = False
+                
+                if passed_clip:
+                    passed_gpt4v = check_image_with_gpt4o(image, prompts[original_idx])
+                    if passed_gpt4v:
+                        passed_attractiveness = attractiveness_check(image)
+                
+                if passed_clip and passed_gpt4v and passed_attractiveness:
                     filtered_images.append(image)
                     filtered_indices.append(original_idx)
                     clip_scores.append(clip_score)
+                    validation_results[original_idx] = {
+                        'seed': current_seed,
+                        'passed_clip': True,
+                        'passed_gpt4v': True,
+                        'passed_attractiveness': True
+                    }
                 else:
+                    # Update validation results for this index
+                    validation_results[original_idx] = {
+                        'seed': current_seed,
+                        'passed_clip': passed_clip,
+                        'passed_gpt4v': passed_clip and not passed_gpt4v,  # Only if CLIP passed but GPT4V failed
+                        'passed_attractiveness': passed_clip and passed_gpt4v and not passed_attractiveness  # Only if both passed but attractiveness failed
+                    }
+                    # Check if we've seen this index before and compare scores
+                    if original_idx in previous_scores and abs(previous_scores[original_idx] - clip_score) < 0.001:
+                        # If score hasn't improved, change seed for next attempt
+                        current_seed += 1
+                        print(f"CLIP score unchanged, changing seed to {current_seed} for next attempt")
+                    previous_scores[original_idx] = clip_score
                     new_remaining_indices.append(original_idx)
 
             remaining_indices = new_remaining_indices
@@ -185,9 +217,22 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                 print("Reached minimum mask_dropout. Adding remaining images...")
                 for batch_idx, original_idx in enumerate(remaining_indices):
                     if batch_idx < len(out.images):  # Only add if we have an image for this index
-                        filtered_images.append(out.images[batch_idx])
+                        image = out.images[batch_idx]
+                        with io.BytesIO() as bio:
+                            image.save(bio, format='PNG')
+                            image_bytes = bio.getvalue()
+                        with io.BytesIO(image_bytes) as bio:
+                            temp_image = Image.open(bio)
+                            clip_score = get_clip_score(temp_image, prompts[original_idx])
+                        filtered_images.append(image)
                         filtered_indices.append(original_idx)
-                        clip_scores.append(current_clip_scores[batch_idx])
+                        clip_scores.append(clip_score)
+                        validation_results[original_idx] = {
+                            'seed': current_seed,
+                            'passed_clip': clip_score >= clip_threshold,
+                            'passed_gpt4v': check_image_with_gpt4o(image, prompts[original_idx]),
+                            'passed_attractiveness': attractiveness_check(image)
+                        }
                 break
             current_mask_dropout = max(0.01, current_mask_dropout - 0.05)
             print(f"Attempt {attempt + 1}: {len(remaining_indices)} images below threshold. Retrying with mask_dropout: {current_mask_dropout:.2f}")
@@ -201,6 +246,13 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
             clip_scores = [0.0] * len(out.images)  # Default scores for non-injection mode
             remaining_indices = []
 
+    # Sort everything according to filtered_indices
+    sorted_indices = sorted(range(len(filtered_indices)), key=lambda k: filtered_indices[k])
+    filtered_images = [filtered_images[i] for i in sorted_indices]
+    clip_scores = [clip_scores[i] for i in sorted_indices]
+    validation_results = [validation_results[i] for i in sorted_indices]
+    filtered_indices.sort()
+    
     if filtered_images:
         # Sort images by original indices
         sorted_pairs = sorted(zip(filtered_indices, filtered_images, clip_scores), key=lambda x: x[0])
@@ -214,7 +266,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
     if remaining_indices:
         print(f"Warning: Could not generate satisfactory images for indices {remaining_indices} after {max_attempts} attempts")
     
-    return filtered_images, img_all, clip_scores
+    return filtered_images, img_all, clip_scores, validation_results
 
 # Anchors
 def run_anchor_generation(story_pipeline, prompts, concept_token,
@@ -234,6 +286,7 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
     filtered_indices = []
     remaining_indices = list(range(batch_size))
     clip_scores = []
+    validation_results = [None] * batch_size  # Initialize with None for each batch index
 
     attempt = 0
     current_mask_dropout = mask_dropout
@@ -251,8 +304,6 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
         default_extended_attn_kwargs = {'extend_kv_unet_parts': ['up']}
         query_store_kwargs={'t_range': [0,n_steps//10], 'strength_start': 0.9, 'strength_end': 0.81836735}
 
-        latents, g = create_latents(story_pipeline, seed, current_batch_size, same_latent, device, float_type)
-
         anchor_cache_first_stage = AnchorCache()
         anchor_cache_second_stage = AnchorCache()
 
@@ -265,7 +316,7 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
             extended_attn_kwargs = {**default_extended_attn_kwargs, 't_range': []}
 
         print(extended_attn_kwargs['t_range'])
-        out = story_pipeline(prompt=current_prompts, generator=g, latents=latents, 
+        out = story_pipeline(prompt=current_prompts, generator=torch.Generator('cuda').manual_seed(seed), latents=torch.randn((current_batch_size, story_pipeline.unet.config.in_channels, 128, 128), device=device, dtype=float_type), 
                             attention_store_kwargs=default_attention_store_kwargs,
                             extended_attn_kwargs=extended_attn_kwargs,
                             share_queries=share_queries,
@@ -280,22 +331,41 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
         for idx, (image, prompt) in enumerate(zip(out.images, current_prompts)):
             clip_score = get_clip_score(image, prompt)
             current_clip_scores.append(clip_score)
-            if clip_score >= clip_threshold and check_image_with_gpt4o(image, prompt):
+            if clip_score >= clip_threshold and check_image_with_gpt4o(image, prompt) and attractiveness_check(image):
                 filtered_images.append(image)
                 filtered_indices.append(remaining_indices[idx])
                 clip_scores.append(clip_score)
+                validation_results[remaining_indices[idx]] = {
+                    'seed': seed,
+                    'passed_clip': clip_score >= clip_threshold,
+                    'passed_gpt4v': check_image_with_gpt4o(image, prompt),
+                    'passed_attractiveness': attractiveness_check(image)
+                }
 
         # Update remaining indices based on CLIP scores
-        remaining_indices = [remaining_indices[i] for i, score in enumerate(current_clip_scores) if score < clip_threshold or not check_image_with_gpt4o(out.images[i], current_prompts[i])]
+        remaining_indices = [remaining_indices[i] for i, score in enumerate(current_clip_scores) if score < clip_threshold or not check_image_with_gpt4o(out.images[i], current_prompts[i]) or not attractiveness_check(out.images[i])]
 
         if len(remaining_indices) > 0:
             if current_mask_dropout <= 0.01:  # If we've reached the minimum mask_dropout
                 print("Reached minimum mask_dropout. Adding remaining images...")
                 for batch_idx, original_idx in enumerate(remaining_indices):
                     if batch_idx < len(out.images):  # Only add if we have an image for this index
-                        filtered_images.append(out.images[batch_idx])
+                        image = out.images[batch_idx]
+                        with io.BytesIO() as bio:
+                            image.save(bio, format='PNG')
+                            image_bytes = bio.getvalue()
+                        with io.BytesIO(image_bytes) as bio:
+                            temp_image = Image.open(bio)
+                            clip_score = get_clip_score(temp_image, prompts[original_idx])
+                        filtered_images.append(image)
                         filtered_indices.append(original_idx)
-                        clip_scores.append(current_clip_scores[batch_idx])
+                        clip_scores.append(clip_score)
+                        validation_results[original_idx] = {
+                            'seed': seed,
+                            'passed_clip': clip_score >= clip_threshold,
+                            'passed_gpt4v': check_image_with_gpt4o(image, prompts[original_idx]),
+                            'passed_attractiveness': attractiveness_check(image)
+                        }
                 break
             current_mask_dropout = max(0.01, current_mask_dropout - 0.05)
             print(f"Attempt {attempt + 1}: {len(remaining_indices)} images below threshold. Retrying with mask_dropout: {current_mask_dropout:.2f}")
@@ -321,7 +391,7 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
             feature_injector = FeatureInjector(nn_map, nn_distances, last_masks, inject_range_alpha=[(n_steps//10, n_steps//3,0.8)], 
                                             swap_strategy='min', inject_unet_parts=['up', 'down'], dist_thr='dynamic')
 
-            out = story_pipeline(prompt=current_prompts, generator=g, latents=latents, 
+            out = story_pipeline(prompt=current_prompts, generator=torch.Generator('cuda').manual_seed(seed), latents=torch.randn((current_batch_size, story_pipeline.unet.config.in_channels, 128, 128), device=device, dtype=float_type), 
                                 attention_store_kwargs=default_attention_store_kwargs,
                                 extended_attn_kwargs=extended_attn_kwargs,
                                 share_queries=share_queries,
@@ -354,7 +424,7 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
         
     img_all = view_images([np.array(x) for x in sorted_images], display_image=False, downscale_rate=downscale_rate)
     
-    return sorted_images, img_all, sorted_scores, anchor_cache_first_stage, anchor_cache_second_stage
+    return sorted_images, img_all, sorted_scores, validation_results, anchor_cache_first_stage, anchor_cache_second_stage
 
 def run_extra_generation(story_pipeline, prompts, concept_token, 
                          anchor_cache_first_stage, anchor_cache_second_stage,
@@ -373,6 +443,7 @@ def run_extra_generation(story_pipeline, prompts, concept_token,
     filtered_images = []
     filtered_indices = []
     clip_scores = []
+    validation_results = [None] * batch_size  # Initialize with None for each batch index
     remaining_indices = list(range(len(prompts)))
     current_mask_dropout = mask_dropout
 
@@ -444,22 +515,41 @@ def run_extra_generation(story_pipeline, prompts, concept_token,
         for idx, (image, prompt) in enumerate(zip(out.images, current_prompts)):
             clip_score = get_clip_score(image, prompt)
             current_clip_scores.append(clip_score)
-            if clip_score >= clip_threshold and check_image_with_gpt4o(image, prompt):
+            if clip_score >= clip_threshold and check_image_with_gpt4o(image, prompt) and attractiveness_check(image):
                 filtered_images.append(image)
                 filtered_indices.append(remaining_indices[idx])
                 clip_scores.append(clip_score)
+                validation_results[remaining_indices[idx]] = {
+                    'seed': seed,
+                    'passed_clip': clip_score >= clip_threshold,
+                    'passed_gpt4v': check_image_with_gpt4o(image, prompt),
+                    'passed_attractiveness': attractiveness_check(image)
+                }
 
         # Update remaining indices based on CLIP scores
-        remaining_indices = [remaining_indices[i] for i, score in enumerate(current_clip_scores) if score < clip_threshold or not check_image_with_gpt4o(out.images[i], current_prompts[i])]
+        remaining_indices = [remaining_indices[i] for i, score in enumerate(current_clip_scores) if score < clip_threshold or not check_image_with_gpt4o(out.images[i], current_prompts[i]) or not attractiveness_check(out.images[i])]
 
         if len(remaining_indices) > 0:
             if current_mask_dropout <= 0.01:  # If we've reached the minimum mask_dropout
                 print("Reached minimum mask_dropout. Adding remaining images...")
                 for batch_idx, original_idx in enumerate(remaining_indices):
                     if batch_idx < len(out.images):  # Only add if we have an image for this index
-                        filtered_images.append(out.images[batch_idx])
+                        image = out.images[batch_idx]
+                        with io.BytesIO() as bio:
+                            image.save(bio, format='PNG')
+                            image_bytes = bio.getvalue()
+                        with io.BytesIO(image_bytes) as bio:
+                            temp_image = Image.open(bio)
+                            clip_score = get_clip_score(temp_image, prompts[original_idx])
+                        filtered_images.append(image)
                         filtered_indices.append(original_idx)
-                        clip_scores.append(current_clip_scores[batch_idx])
+                        clip_scores.append(clip_score)
+                        validation_results[original_idx] = {
+                            'seed': seed,
+                            'passed_clip': clip_score >= clip_threshold,
+                            'passed_gpt4v': check_image_with_gpt4o(image, prompts[original_idx]),
+                            'passed_attractiveness': attractiveness_check(image)
+                        }
                 break
             current_mask_dropout = max(0.01, current_mask_dropout - 0.05)
             print(f"Attempt {attempt + 1}: {len(remaining_indices)} images below threshold. Retrying with mask_dropout: {current_mask_dropout:.2f}")
@@ -492,4 +582,4 @@ def run_extra_generation(story_pipeline, prompts, concept_token,
         else:
             img_all = view_images([np.array(x) for x in out.images], display_image=False, downscale_rate=downscale_rate)
     
-    return filtered_images, img_all, clip_scores
+    return filtered_images, img_all, clip_scores, validation_results

@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a volunteer badge, helping at a community center"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, organizing community activities"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, assisting at local events"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, supporting community programs"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, coordinating center activities"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, helping community members"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, facilitating group sessions"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, managing center resources"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, assisting with programs"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, supporting local initiatives"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a volunteer badge, organizing community events"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, helping at center programs"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, coordinating activities"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, assisting center staff"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, supporting local projects"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, managing center events"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, facilitating workshops"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, helping community groups"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, organizing center activities"
+      - "who is 30 years old, with short hair, wearing a volunteer badge, supporting community services"
+
+out_dir: "condition_3/4" 
+clip_threshold: 0.28

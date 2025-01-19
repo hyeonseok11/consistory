@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, donating blood at a medical center"
+      - "who is 30 years old, with short hair, wearing casual clothes, helping at a blood drive"
+      - "who is 30 years old, with short hair, wearing casual clothes, volunteering at a blood bank"
+      - "who is 30 years old, with short hair, wearing casual clothes, assisting at a donation clinic"
+      - "who is 30 years old, with short hair, wearing casual clothes, supporting blood collection"
+      - "who is 30 years old, with short hair, wearing casual clothes, participating in blood donation"
+      - "who is 30 years old, with short hair, wearing casual clothes, helping at a donation facility"
+      - "who is 30 years old, with short hair, wearing casual clothes, volunteering at a blood center"
+      - "who is 30 years old, with short hair, wearing casual clothes, assisting blood drive staff"
+      - "who is 30 years old, with short hair, wearing casual clothes, at a blood donation event"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, supporting medical donation"
+      - "who is 30 years old, with short hair, wearing casual clothes, helping at a donation center"
+      - "who is 30 years old, with short hair, wearing casual clothes, volunteering for blood collection"
+      - "who is 30 years old, with short hair, wearing casual clothes, assisting donation activities"
+      - "who is 30 years old, with short hair, wearing casual clothes, at a blood bank facility"
+      - "who is 30 years old, with short hair, wearing casual clothes, supporting healthcare donation"
+      - "who is 30 years old, with short hair, wearing casual clothes, helping medical volunteers"
+      - "who is 30 years old, with short hair, wearing casual clothes, at a donation drive"
+      - "who is 30 years old, with short hair, wearing casual clothes, assisting healthcare workers"
+      - "who is 30 years old, with short hair, wearing casual clothes, supporting blood donation"
+
+out_dir: "condition_3/3" 
+clip_threshold: 0.28

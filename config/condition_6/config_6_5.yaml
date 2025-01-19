@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing formal wear, standing before mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, checking reflection"
+      - "who is 30 years old, with short hair, wearing formal wear, adjusting outfit in mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, viewing self in mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, positioned at mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, standing by mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, looking in mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, facing mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, at dressing mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, examining reflection"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing formal wear, near full-length mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, checking appearance"
+      - "who is 30 years old, with short hair, wearing formal wear, standing at mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, viewing mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, by mirror reflection"
+      - "who is 30 years old, with short hair, wearing formal wear, adjusting in mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, at mirror view"
+      - "who is 30 years old, with short hair, wearing formal wear, standing near mirror"
+      - "who is 30 years old, with short hair, wearing formal wear, observing reflection"
+      - "who is 30 years old, with short hair, wearing formal wear, positioned before mirror"
+
+out_dir: "condition_6/5"
+clip_threshold: 0.28

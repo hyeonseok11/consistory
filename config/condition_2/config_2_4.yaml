@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a casual shirt during a team meeting"
+      - "who is 30 years old, with short hair, in a relaxed shirt at a conference room discussion"
+      - "who is 30 years old, with short hair, sporting a comfortable shirt in a meeting space"
+      - "who is 30 years old, with short hair, wearing an informal shirt at a group gathering"
+      - "who is 30 years old, with short hair, in a laid-back shirt during a business meeting"
+      - "who is 30 years old, with short hair, donning a casual shirt in a meeting environment"
+      - "who is 30 years old, with short hair, wearing a relaxed shirt at a team huddle"
+      - "who is 30 years old, with short hair, in an easy-going shirt during a work meeting"
+      - "who is 30 years old, with short hair, sporting a casual shirt at a meeting table"
+      - "who is 30 years old, with short hair, wearing a comfortable shirt in a discussion room"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, in a casual shirt during a project meeting"
+      - "who is 30 years old, with short hair, wearing a relaxed shirt at a team briefing"
+      - "who is 30 years old, with short hair, sporting an informal shirt in a meeting setup"
+      - "who is 30 years old, with short hair, in a comfortable shirt at a group discussion"
+      - "who is 30 years old, with short hair, wearing a laid-back shirt during team talks"
+      - "who is 30 years old, with short hair, donning a casual shirt at a meeting roundtable"
+      - "who is 30 years old, with short hair, in a relaxed shirt during a work discussion"
+      - "who is 30 years old, with short hair, wearing an easy-going shirt at a team meeting"
+      - "who is 30 years old, with short hair, sporting a comfortable shirt in a conference setting"
+      - "who is 30 years old, with short hair, in a casual shirt at a business gathering"
+
+out_dir: "condition_2/4"
+clip_threshold: 0.28

@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing an apron, serving meals at a community kitchen"
+      - "who is 30 years old, with short hair, wearing an apron, preparing food at a soup kitchen"
+      - "who is 30 years old, with short hair, wearing an apron, distributing meals at a food bank"
+      - "who is 30 years old, with short hair, wearing an apron, cooking for the homeless"
+      - "who is 30 years old, with short hair, wearing an apron, helping at a meal center"
+      - "who is 30 years old, with short hair, wearing an apron, plating food at a free dining hall"
+      - "who is 30 years old, with short hair, wearing an apron, organizing meals for the needy"
+      - "who is 30 years old, with short hair, wearing an apron, volunteering at a food service"
+      - "who is 30 years old, with short hair, wearing an apron, assisting in meal preparation"
+      - "who is 30 years old, with short hair, wearing an apron, serving at a community meal"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing an apron, working at a food distribution center"
+      - "who is 30 years old, with short hair, wearing an apron, helping with meal service"
+      - "who is 30 years old, with short hair, wearing an apron, packaging meals for distribution"
+      - "who is 30 years old, with short hair, wearing an apron, serving food to those in need"
+      - "who is 30 years old, with short hair, wearing an apron, volunteering at a meal program"
+      - "who is 30 years old, with short hair, wearing an apron, preparing community meals"
+      - "who is 30 years old, with short hair, wearing an apron, assisting at a food pantry"
+      - "who is 30 years old, with short hair, wearing an apron, helping with meal distribution"
+      - "who is 30 years old, with short hair, wearing an apron, serving at a free lunch program"
+      - "who is 30 years old, with short hair, wearing an apron, working in a community kitchen"
+
+out_dir: "condition_3/2" 
+clip_threshold: 0.28

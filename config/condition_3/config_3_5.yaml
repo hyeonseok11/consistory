@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing gardening gloves, planting trees in a community park"
+      - "who is 30 years old, with short hair, wearing gardening gloves, maintaining park greenery"
+      - "who is 30 years old, with short hair, wearing gardening gloves, landscaping public spaces"
+      - "who is 30 years old, with short hair, wearing gardening gloves, creating urban gardens"
+      - "who is 30 years old, with short hair, wearing gardening gloves, tending to park plants"
+      - "who is 30 years old, with short hair, wearing gardening gloves, beautifying community spaces"
+      - "who is 30 years old, with short hair, wearing gardening gloves, working on park restoration"
+      - "who is 30 years old, with short hair, wearing gardening gloves, planting community gardens"
+      - "who is 30 years old, with short hair, wearing gardening gloves, improving park landscapes"
+      - "who is 30 years old, with short hair, wearing gardening gloves, developing green spaces"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing gardening gloves, nurturing park vegetation"
+      - "who is 30 years old, with short hair, wearing gardening gloves, establishing urban forests"
+      - "who is 30 years old, with short hair, wearing gardening gloves, caring for park trees"
+      - "who is 30 years old, with short hair, wearing gardening gloves, enhancing public gardens"
+      - "who is 30 years old, with short hair, wearing gardening gloves, working on green initiatives"
+      - "who is 30 years old, with short hair, wearing gardening gloves, maintaining public parks"
+      - "who is 30 years old, with short hair, wearing gardening gloves, creating community gardens"
+      - "who is 30 years old, with short hair, wearing gardening gloves, supporting park development"
+      - "who is 30 years old, with short hair, wearing gardening gloves, planting urban greenery"
+      - "who is 30 years old, with short hair, wearing gardening gloves, improving park environments"
+
+out_dir: "condition_3/5" 
+clip_threshold: 0.28

@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing ski gear, preparing for downhill run"
+      - "who is 30 years old, with short hair, wearing ski gear, adjusting ski boots"
+      - "who is 30 years old, with short hair, wearing ski gear, riding ski lift"
+      - "who is 30 years old, with short hair, wearing ski gear, checking slope conditions"
+      - "who is 30 years old, with short hair, wearing ski gear, practicing ski technique"
+      - "who is 30 years old, with short hair, wearing ski gear, traversing snowy terrain"
+      - "who is 30 years old, with short hair, wearing ski gear, at ski resort summit"
+      - "who is 30 years old, with short hair, wearing ski gear, starting ski descent"
+      - "who is 30 years old, with short hair, wearing ski gear, navigating ski trail"
+      - "who is 30 years old, with short hair, wearing ski gear, on beginner slope"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing ski gear, mastering ski turns"
+      - "who is 30 years old, with short hair, wearing ski gear, exploring ski runs"
+      - "who is 30 years old, with short hair, wearing ski gear, at ski base station"
+      - "who is 30 years old, with short hair, wearing ski gear, checking trail map"
+      - "who is 30 years old, with short hair, wearing ski gear, adjusting ski poles"
+      - "who is 30 years old, with short hair, wearing ski gear, on intermediate slope"
+      - "who is 30 years old, with short hair, wearing ski gear, practicing snow plough"
+      - "who is 30 years old, with short hair, wearing ski gear, following ski instructor"
+      - "who is 30 years old, with short hair, wearing ski gear, enjoying winter sports"
+      - "who is 30 years old, with short hair, wearing ski gear, skiing fresh powder"
+
+out_dir: "condition_4/5"
+clip_threshold: 0.28

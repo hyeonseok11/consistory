@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a business suit in a corporate environment"
+      - "who is 30 years old, with short hair, dressed in professional attire at a workplace desk"
+      - "who is 30 years old, with short hair, donning executive clothing in a modern office"
+      - "who is 30 years old, with short hair, sporting formal wear during a business meeting"
+      - "who is 30 years old, with short hair, clad in office apparel near a conference room"
+      - "who is 30 years old, with short hair, in work attire standing by office windows"
+      - "who is 30 years old, with short hair, wearing a blazer in a sleek office space"
+      - "who is 30 years old, with short hair, dressed smartly in a corporate lobby"
+      - "who is 30 years old, with short hair, in business casual at an office workstation"
+      - "who is 30 years old, with short hair, wearing formal clothes near office bookshelves"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, in professional dress at a business presentation"
+      - "who is 30 years old, with short hair, wearing work attire near office cubicles"
+      - "who is 30 years old, with short hair, dressed formally in front of office elevators"
+      - "who is 30 years old, with short hair, in business wear at an office reception area"
+      - "who is 30 years old, with short hair, sporting office attire near a water cooler"
+      - "who is 30 years old, with short hair, wearing executive clothing in a boardroom"
+      - "who is 30 years old, with short hair, in formal dress during an office team meeting"
+      - "who is 30 years old, with short hair, donning business apparel near office plants"
+      - "who is 30 years old, with short hair, clad in work clothes at an office desk setup"
+      - "who is 30 years old, with short hair, wearing professional attire by office artwork"
+
+out_dir: "condition_2/1"
+clip_threshold: 0.28

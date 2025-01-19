@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing workout attire, standing in gym"
+      - "who is 30 years old, with short hair, wearing workout attire, positioned in fitness center"
+      - "who is 30 years old, with short hair, wearing workout attire, standing near equipment"
+      - "who is 30 years old, with short hair, wearing workout attire, at gym entrance"
+      - "who is 30 years old, with short hair, wearing workout attire, standing by weights"
+      - "who is 30 years old, with short hair, wearing workout attire, in exercise area"
+      - "who is 30 years old, with short hair, wearing workout attire, at gym station"
+      - "who is 30 years old, with short hair, wearing workout attire, standing still in gym"
+      - "who is 30 years old, with short hair, wearing workout attire, by gym mirror"
+      - "who is 30 years old, with short hair, wearing workout attire, in training zone"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing workout attire, at gym corner"
+      - "who is 30 years old, with short hair, wearing workout attire, standing in workout area"
+      - "who is 30 years old, with short hair, wearing workout attire, near exercise machines"
+      - "who is 30 years old, with short hair, wearing workout attire, in fitness room"
+      - "who is 30 years old, with short hair, wearing workout attire, at gym floor"
+      - "who is 30 years old, with short hair, wearing workout attire, standing by dumbbells"
+      - "who is 30 years old, with short hair, wearing workout attire, in training room"
+      - "who is 30 years old, with short hair, wearing workout attire, at workout station"
+      - "who is 30 years old, with short hair, wearing workout attire, by gym equipment"
+      - "who is 30 years old, with short hair, wearing workout attire, in exercise space"
+
+out_dir: "condition_6/3"
+clip_threshold: 0.28

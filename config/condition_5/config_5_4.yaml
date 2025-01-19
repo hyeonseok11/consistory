@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual gaming attire, playing video games"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, setting up gaming console"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, organizing gaming setup"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, adjusting gaming monitor"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, selecting game title"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, configuring game settings"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, connecting gaming devices"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, testing game controls"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, arranging gaming space"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, starting gaming session"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual gaming attire, using gaming headset"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, managing game inventory"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, customizing game character"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, navigating game menu"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, checking game progress"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, exploring virtual world"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, adjusting game volume"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, saving game progress"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, switching game modes"
+      - "who is 30 years old, with short hair, wearing casual gaming attire, updating game software"
+
+out_dir: "condition_5/4"
+clip_threshold: 0.28

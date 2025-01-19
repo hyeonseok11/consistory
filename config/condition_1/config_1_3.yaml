@@ -1,0 +1,50 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+# Settings divided into groups of 10
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a shirt and suit pants, standing with a slight smile against a clean concrete wall with a blurred cityscape in the background."
+      - "who is 30 years old, with short hair, dressed in a crisp button-down shirt and tailored pants, posing confidently before an industrial concrete backdrop with distant city views."
+      - "who is 30 years old, with short hair, in a well-fitted dress shirt and sleek suit trousers, positioned naturally against a modern concrete surface with urban scenery behind."
+      - "who is 30 years old, with short hair, sporting a professional shirt and pressed pants, standing casually by a minimalist concrete wall overlooking a city panorama."
+      - "who is 30 years old, with short hair, wearing a classic white shirt and formal pants, captured against a contemporary concrete background with cityscapes visible."
+      - "who is 30 years old, with short hair, in an elegant shirt and tailored suit pants, positioned beside a sleek concrete wall with metropolitan views."
+      - "who is 30 years old, with short hair, donning a refined dress shirt and structured pants, framed by a modern concrete surface and distant urban landscape."
+      - "who is 30 years old, with short hair, wearing a pristine button-up and fitted trousers, standing naturally against an architectural concrete wall with city vistas."
+      - "who is 30 years old, with short hair, in a sophisticated shirt and well-cut pants, posed before a clean concrete backdrop with blurred city elements."
+      - "who is 30 years old, with short hair, sporting a polished dress shirt and suit pants, positioned against a minimalist concrete surface with urban background."
+
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a premium shirt and tailored pants, standing confidently by a textured concrete wall with city scenery."
+      - "who is 30 years old, with short hair, in a sharp dress shirt and formal trousers, posed naturally against an industrial concrete backdrop with metropolitan views."
+      - "who is 30 years old, with short hair, dressed in a crisp shirt and fitted suit pants, captured beside a modern concrete surface with urban panorama."
+      - "who is 30 years old, with short hair, sporting an immaculate button-down and pressed pants, framed by a clean concrete wall with cityscape elements."
+      - "who is 30 years old, with short hair, wearing a refined white shirt and structured trousers, positioned before a contemporary concrete background with blurred city views."
+      - "who is 30 years old, with short hair, in an elegant button-up and tailored pants, standing naturally against a minimalist concrete wall with urban scenery."
+      - "who is 30 years old, with short hair, donning a classic shirt and well-fitted pants, captured against a sleek concrete surface with metropolitan backdrop."
+      - "who is 30 years old, with short hair, wearing a sophisticated dress shirt and suit trousers, posed by an architectural concrete wall with city elements."
+      - "who is 30 years old, with short hair, in a professional shirt and pressed pants, standing confidently before a modern concrete backdrop with distant urban views."
+      - "who is 30 years old, with short hair, sporting a polished button-down and formal pants, positioned against a clean concrete surface with cityscape background."
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing a pristine shirt and tailored trousers, captured beside a contemporary concrete wall with metropolitan scenery."
+      - "who is 30 years old, with short hair, in a sharp button-up and structured pants, standing naturally against an industrial concrete surface with urban vistas."
+      - "who is 30 years old, with short hair, dressed in a refined dress shirt and fitted pants, posed before a minimalist concrete backdrop with city panorama."
+      - "who is 30 years old, with short hair, sporting an elegant white shirt and suit trousers, framed by a modern concrete wall with blurred urban elements."
+      - "who is 30 years old, with short hair, wearing a classic button-down and pressed pants, positioned against a clean concrete background with distant city views."
+
+out_dir: "condition_1/3"
+clip_threshold: 0.28

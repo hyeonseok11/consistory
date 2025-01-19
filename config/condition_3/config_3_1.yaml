@@ -1,0 +1,40 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, caring for animals at a shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, feeding pets at an animal shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, cleaning kennels at an animal sanctuary"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, walking dogs at a shelter facility"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, playing with cats at an animal rescue"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, grooming pets at a shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, organizing supplies at an animal shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, assisting with animal care at a shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, helping at a pet adoption event"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, tending to animals at a rescue center"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, socializing with shelter pets"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, maintaining animal shelter facilities"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, preparing food at an animal shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, documenting shelter animals"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, training shelter dogs"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, administering care at an animal shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, cleaning at a pet shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, assisting veterinarians at a shelter"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, managing shelter visitors"
+      - "who is 30 years old, with short hair, wearing a volunteer T-shirt, coordinating animal shelter activities"
+
+out_dir: "condition_3/1" 
+clip_threshold: 0.28

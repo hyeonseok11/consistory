@@ -1,0 +1,49 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+# Settings divided into groups of 10
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a formal suit in a bright gray studio."
+      - "who is 30 years old, with short hair, wearing a tailored suit while standing in a well-lit professional studio setting."
+      - "who is 30 years old, with short hair, wearing a crisp business suit in a modern, brightly illuminated photoshoot space."
+      - "who is 30 years old, with short hair, wearing a sleek formal attire against a clean, light-colored backdrop."
+      - "who is 30 years old, with short hair, wearing an elegant suit jacket in a minimalist, bright photography studio."
+      - "who is 30 years old, with short hair, wearing a sleek business ensemble in a well-illuminated, subdued setting."
+      - "who is 30 years old, with short hair, wearing a polished dress suit in a spacious, luminous studio setup."
+      - "who is 30 years old, with short hair, wearing a refined business ensemble in a contemporary, well-illuminated space."
+      - "who is 30 years old, with short hair, wearing a sophisticated suit in a stark, brilliantly lit photo area."
+      - "who is 30 years old, with short hair, wearing an impeccable formal suit within a bright, uncluttered studio background."
+
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, dressed in a classic suit against a professional studio backdrop."
+      - "who is 30 years old, with short hair, wearing a premium business suit in a clean, well-lit environment."
+      - "who is 30 years old, with short hair, in an executive suit photographed in a bright, minimal studio."
+      - "who is 30 years old, with short hair, wearing a sharp suit in a professionally illuminated setting."
+      - "who is 30 years old, with short hair, dressed in formal business attire in a bright, modern studio."
+      - "who is 30 years old, with short hair, in a tailored business suit under perfect studio lighting."
+      - "who is 30 years old, with short hair, wearing a distinguished suit in a pristine photo studio."
+      - "who is 30 years old, with short hair, in an elegant business ensemble against a bright backdrop."
+      - "who is 30 years old, with short hair, wearing a refined suit in a professionally lit studio space."
+      - "who is 30 years old, with short hair, in a premium formal suit within a bright, clean studio."
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing a stylish suit in a bright, professional studio setting."
+      - "who is 30 years old, with short hair, wearing a formal business attire against a backdrop of clean, well-lit space."
+      - "who is 30 years old, with short hair, sporting a sleek business suit in a high-end, brightly illuminated photo studio."
+      - "who is 30 years old, with short hair, donning a sophisticated suit in a crisp, well-appointed studio environment."
+      - "who is 30 years old, with short hair, in an elegant suit jacket photographed in a minimalist, bright studio."
+
+out_dir: "condition_1/1"
+clip_threshold: 0.28

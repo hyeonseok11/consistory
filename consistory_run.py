@@ -176,41 +176,29 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                 
                 print(f"Image {original_idx} CLIP score: {clip_score}")
                 
-                # Check validation criteria sequentially
-                passed_clip = clip_score >= clip_threshold
-                passed_gpt4v = False
-                passed_attractiveness = False
+                validation_result = validate_image(image, prompts[original_idx], clip_score, clip_threshold)
+                validation_result['seed'] = current_seed
+                validation_result['generation_seed'] = current_seed
+                validation_result['final_attempt'] = False
                 
-                if passed_clip:
-                    passed_gpt4v = check_image_with_gpt4o(image, prompts[original_idx])
-                    if passed_gpt4v:
-                        passed_attractiveness = attractiveness_check(image)
-                
-                if passed_clip and passed_gpt4v and passed_attractiveness:
+                if validation_result['all_passed']:
                     filtered_images.append(image)
                     filtered_indices.append(original_idx)
                     clip_scores.append(clip_score)
-                    validation_results[original_idx] = {
-                        'seed': current_seed,
-                        'passed_clip': True,
-                        'passed_gpt4v': True,
-                        'passed_attractiveness': True
-                    }
+                    validation_results[original_idx] = validation_result
                 else:
-                    # Update validation results for this index
-                    validation_results[original_idx] = {
-                        'seed': current_seed,
-                        'passed_clip': passed_clip,
-                        'passed_gpt4v': passed_clip and not passed_gpt4v,  # Only if CLIP passed but GPT4V failed
-                        'passed_attractiveness': passed_clip and passed_gpt4v and not passed_attractiveness  # Only if both passed but attractiveness failed
-                    }
-                    # Check if we've seen this index before and compare scores
-                    if original_idx in previous_scores and abs(previous_scores[original_idx] - clip_score) < 0.001:
-                        # If score hasn't improved, change seed for next attempt
-                        current_seed += 1
-                        print(f"CLIP score unchanged, changing seed to {current_seed} for next attempt")
-                    previous_scores[original_idx] = clip_score
-                    new_remaining_indices.append(original_idx)
+                    # Save image anyway if this is the last attempt
+                    if attempt == max_attempts - 1:
+                        filtered_images.append(image)
+                        filtered_indices.append(original_idx)
+                        clip_scores.append(clip_score)
+                        validation_result['final_attempt'] = True
+                        validation_results[original_idx] = validation_result
+                        print(f"Saving image {original_idx} on last attempt despite not passing all validations")
+                    else:
+                        new_remaining_indices.append(original_idx)
+                        previous_scores[original_idx] = clip_score
+                        validation_results[original_idx] = validation_result  # Store validation result for future reference
 
             remaining_indices = new_remaining_indices
             if current_mask_dropout <= 0.01:  # If we've reached the minimum mask_dropout
@@ -246,18 +234,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
             clip_scores = [0.0] * len(out.images)  # Default scores for non-injection mode
             remaining_indices = []
 
-    # Sort everything according to filtered_indices
-    sorted_indices = sorted(range(len(filtered_indices)), key=lambda k: filtered_indices[k])
-    filtered_images = [filtered_images[i] for i in sorted_indices]
-    clip_scores = [clip_scores[i] for i in sorted_indices]
-    validation_results = [validation_results[i] for i in sorted_indices]
-    filtered_indices.sort()
-    
     if filtered_images:
-        # Sort images by original indices
-        sorted_pairs = sorted(zip(filtered_indices, filtered_images, clip_scores), key=lambda x: x[0])
-        filtered_images = [img for _, img, _ in sorted_pairs]
-        clip_scores = [score for _, _, score in sorted_pairs]
         img_all = view_images([np.array(x) for x in filtered_images], display_image=False, downscale_rate=downscale_rate)
     else:
         img_all = None
@@ -411,11 +388,20 @@ def run_anchor_generation(story_pipeline, prompts, concept_token,
 
         attempt += 1
 
-    # Sort the filtered images based on original indices
-    sorted_results = sorted(zip(filtered_indices, filtered_images, clip_scores))
-    sorted_images = [img for _, img, _ in sorted_results]
-    sorted_scores = [score for _, _, score in sorted_results]
-    
+    # Save images in order
+    for i, (image, idx, clip_score) in enumerate(zip(filtered_images, filtered_indices, clip_scores)):
+        result = validation_results[idx]
+        
+        save_validated_image(
+            image=image,
+            validation_result=result,
+            output_dir=output_dir,
+            group_idx=group_idx,
+            seed=result['seed'],
+            image_idx=i,
+            clip_score=clip_score
+        )
+
     if len(sorted_images) == 0:
         print("Warning: No images met the CLIP score threshold after all attempts")
         # Use the last generated images as fallback
@@ -583,3 +569,40 @@ def run_extra_generation(story_pipeline, prompts, concept_token,
             img_all = view_images([np.array(x) for x in out.images], display_image=False, downscale_rate=downscale_rate)
     
     return filtered_images, img_all, clip_scores, validation_results
+
+def validate_image(image, prompt, clip_score, clip_threshold):
+    """이미지에 대한 모든 검증을 수행하고 결과를 반환"""
+    validation_result = {
+        'passed_clip': clip_score >= clip_threshold,
+        'passed_gpt4v': False,
+        'passed_attractiveness': False,
+        'all_passed': False
+    }
+    
+    if validation_result['passed_clip']:
+        validation_result['passed_gpt4v'] = check_image_with_gpt4o(image, prompt)
+        if validation_result['passed_gpt4v']:
+            validation_result['passed_attractiveness'] = attractiveness_check(image)
+    
+    validation_result['all_passed'] = (
+        validation_result['passed_clip'] and 
+        validation_result['passed_gpt4v'] and 
+        validation_result['passed_attractiveness']
+    )
+    
+    return validation_result
+
+def get_failure_suffix(validation_result):
+    """검증 결과에 따른 파일명 접미사 생성"""
+    if validation_result['all_passed']:
+        return ""
+        
+    failure_parts = []
+    if not validation_result['passed_clip']:
+        failure_parts.append('clip')
+    elif not validation_result['passed_gpt4v']:
+        failure_parts.append('gpt4v')
+    elif not validation_result['passed_attractiveness']:
+        failure_parts.append('attr')
+    
+    return f"_failed_{'-'.join(failure_parts)}" if failure_parts else ""

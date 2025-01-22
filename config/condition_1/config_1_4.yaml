@@ -13,37 +13,29 @@ concept_token:
 settings_groups:
   group_1:
     settings:
-      - "who is 30 years old, with short hair, wearing a dark-toned suit in a dimly lit studio."
-      - "who is 30 years old, with short hair, dressed in a charcoal suit under moody studio lighting."
-      - "who is 30 years old, with short hair, in an elegant black suit within a low-lit photography space."
-      - "who is 30 years old, with short hair, sporting a sophisticated navy suit in atmospheric studio lighting."
-      - "who is 30 years old, with short hair, wearing a deep gray suit in a dramatically lit studio setting."
-      - "who is 30 years old, with short hair, in a refined dark suit against shadowed studio backdrop."
-      - "who is 30 years old, with short hair, donning a sleek black ensemble in subdued studio illumination."
-      - "who is 30 years old, with short hair, wearing a polished dark suit under carefully dimmed lights."
-      - "who is 30 years old, with short hair, in a premium charcoal suit within moody studio ambiance."
-      - "who is 30 years old, with short hair, sporting an impeccable navy suit in low-key lighting."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a company reception area."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a bustling office lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a modern business lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, near the elevators of a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, by the reception desk of a company lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a sleek office entrance area."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a well-lit corporate foyer."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a busy company lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a office reception hall."
 
   group_2:
     settings:
-      - "who is 30 years old, with short hair, wearing a tailored dark suit in atmospheric studio conditions."
-      - "who is 30 years old, with short hair, dressed in a deep black suit under controlled low lighting."
-      - "who is 30 years old, with short hair, in a sophisticated charcoal ensemble within shadowed studio space."
-      - "who is 30 years old, with short hair, sporting a refined navy suit against dimly lit backdrop."
-      - "who is 30 years old, with short hair, wearing an elegant dark gray suit in moody studio environment."
-      - "who is 30 years old, with short hair, in a sleek black suit under dramatic studio lighting."
-      - "who is 30 years old, with short hair, donning a premium dark suit within subdued photo studio."
-      - "who is 30 years old, with short hair, wearing a polished charcoal ensemble in low-key studio setting."
-      - "who is 30 years old, with short hair, in an impeccable navy suit against atmospheric backdrop."
-      - "who is 30 years old, with short hair, sporting a sophisticated dark suit in carefully lit studio."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, at a company's main entrance."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a busy office lobby."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, near the reception area of a corporate building."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a modern business lobby setting."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, by the elevators in a company foyer."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a sleek corporate entrance hall."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a bustling office lobby."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a well-designed company reception area."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in an impressive corporate lobby space."
 
-  group_3:
-    settings:
-      - "who is 30 years old, with short hair, wearing a refined black suit in moody studio lighting."
-      - "who is 30 years old, with short hair, dressed in a sleek dark gray ensemble under atmospheric conditions."
-      - "who is 30 years old, with short hair, in a tailored navy suit within dimly lit photo space."
-      - "who is 30 years old, with short hair, sporting an elegant charcoal suit against shadowed backdrop."
-      - "who is 30 years old, with short hair, wearing a premium dark suit in low-key studio environment."
-
-out_dir: "condition_1/4"
+out_dir: "condition_1/4_lobby"
 clip_threshold: 0.28

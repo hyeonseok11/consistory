@@ -13,37 +13,29 @@ concept_token:
 settings_groups:
   group_1:
     settings:
-      - "who is 30 years old, with short hair, wearing a blazer and blouse in a minimalist office."
-      - "who is 30 years old, with short hair, dressed in a tailored blazer and silk blouse in a contemporary workspace."
-      - "who is 30 years old, with short hair, in an elegant blazer paired with a refined blouse in a modern office setting."
-      - "who is 30 years old, with short hair, wearing a professional blazer ensemble with a classic blouse in a sleek office environment."
-      - "who is 30 years old, with short hair, sporting a sophisticated blazer and stylish blouse in a clean-lined office space."
-      - "who is 30 years old, with short hair, in a structured blazer and flowing blouse within a minimalistic corporate setting."
-      - "who is 30 years old, with short hair, wearing a chic blazer matched with an elegant blouse in a pristine office."
-      - "who is 30 years old, with short hair, donning a refined blazer and crisp blouse in an understated office interior."
-      - "who is 30 years old, with short hair, in a polished blazer and luxe blouse against a minimal office backdrop."
-      - "who is 30 years old, with short hair, wearing a smart blazer complemented by a graceful blouse in a streamlined workspace."
+      - "who is 30 years old, with short hair, wearing a gray suit, standing in an office"
+      - "who is 30 years old, with short hair, wearing a gray suit, posed in front of office desks"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing in an office hallway"
+      - "who is 30 years old, with short hair, wearing a gray suit, in front of office cubicles"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing by office windows"
+      - "who is 30 years old, with short hair, wearing a gray suit, posed in an office lobby"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing near office equipment"
+      - "who is 30 years old, with short hair, wearing a gray suit, in an office doorway"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing by office bookshelves"
+      - "who is 30 years old, with short hair, wearing a gray suit, posed in a conference room"
 
   group_2:
     settings:
-      - "who is 30 years old, with short hair, in a fitted blazer paired with a delicate blouse in an efficient office space."
-      - "who is 30 years old, with short hair, wearing a sharp blazer and flowing blouse in a clean-cut office environment."
-      - "who is 30 years old, with short hair, dressed in a sleek blazer with a refined blouse in a contemporary office setting."
-      - "who is 30 years old, with short hair, sporting an impeccable blazer and classic blouse in a minimalist workplace."
-      - "who is 30 years old, with short hair, in a tailored blazer ensemble with an elegant blouse in a modern office interior."
-      - "who is 30 years old, with short hair, wearing a professional blazer matched with a sophisticated blouse in an uncluttered office."
-      - "who is 30 years old, with short hair, donning a structured blazer and stylish blouse in a sleek corporate environment."
-      - "who is 30 years old, with short hair, in a polished blazer complemented by a chic blouse in a pristine workspace."
-      - "who is 30 years old, with short hair, wearing an elegant blazer and graceful blouse in a minimalistic office setting."
-      - "who is 30 years old, with short hair, in a refined blazer paired with a luxe blouse in a contemporary office space."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing in an office area"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, posed by office file cabinets"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing near office plants"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in front of an office whiteboard"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing by office water cooler"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, posed in an office break room"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing near office elevator"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in an office reception area"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing by office artwork"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, posed in an office corridor"
 
-  group_3:
-    settings:
-      - "who is 30 years old, with short hair, wearing a sophisticated blazer and flowing blouse in a modern office environment."
-      - "who is 30 years old, with short hair, in a smart blazer matched with a delicate blouse in an understated workspace."
-      - "who is 30 years old, with short hair, dressed in a chic blazer and classic blouse in a streamlined office interior."
-      - "who is 30 years old, with short hair, sporting a structured blazer paired with an elegant blouse in a minimal office setting."
-      - "who is 30 years old, with short hair, donning a tailored blazer ensemble with a refined blouse in a clean-lined corporate space."
-
-out_dir: "condition_1/2"
+out_dir: "condition_1/2_office"
 clip_threshold: 0.28

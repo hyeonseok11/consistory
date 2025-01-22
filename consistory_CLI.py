@@ -34,6 +34,13 @@ def get_validation_suffix(validation_result):
         failed_checks.append('attr')
     return f"_failed_{'-'.join(failed_checks)}" if failed_checks else ""
 
+def save_validated_image(image, validation_result, output_dir, group_idx, seed, image_idx, clip_score):
+    validation_suffix = get_validation_suffix(validation_result)
+    image_path = f'{output_dir}/{group_idx}_seed{seed}_image_{image_idx}{validation_suffix}.png'
+    os.makedirs(os.path.dirname(image_path), exist_ok=True)
+    image.save(image_path)
+    print(f"Saved image {image_idx} with CLIP score: {clip_score:.4f} at {image_path}")
+
 def run_batch(gpu, seed=40, mask_dropout=0.5, same_latent=False,
               style="A photo of ", subject="a cute dog", concept_token=['dog'],
               settings=["sitting in the beach", "standing in the snow"],
@@ -57,16 +64,20 @@ def run_batch(gpu, seed=40, mask_dropout=0.5, same_latent=False,
             images, image_all, clip_scores, validation_results = run_batch_generation(
                 story_pipeline, prompts, concept_token, seed, 
                 mask_dropout=mask_dropout, same_latent=same_latent,
-                clip_threshold=clip_threshold
+                clip_threshold=clip_threshold,
             )
 
             if images:
                 for i, (image, score, validation) in enumerate(zip(images, clip_scores, validation_results)):
-                    validation_suffix = get_validation_suffix(validation)
-                    image_path = f'{out_dir}/{group_name}_seed{validation["seed"]}_image_{i}{validation_suffix}.png'
-                    os.makedirs(os.path.dirname(image_path), exist_ok=True)
-                    image.save(image_path)
-                    print(f"Saved image {i} with CLIP score: {score:.4f} at {image_path}")
+                    save_validated_image(
+                        image=image,
+                        validation_result=validation,
+                        output_dir=out_dir,
+                        group_idx=group_name,
+                        seed=validation['seed'],
+                        image_idx=i,
+                        clip_score=score
+                    )
     else:
         # Set default output directory if not specified
         if out_dir is None:
@@ -85,11 +96,15 @@ def run_batch(gpu, seed=40, mask_dropout=0.5, same_latent=False,
 
         if images:
             for i, (image, score, validation) in enumerate(zip(images, clip_scores, validation_results)):
-                validation_suffix = get_validation_suffix(validation)
-                image_path = f'{out_dir}/seed{validation["seed"]}_image_{i}{validation_suffix}.png'
-                os.makedirs(os.path.dirname(image_path), exist_ok=True)
-                image.save(image_path)
-                print(f"Saved image {i} with CLIP score: {score:.4f} at {image_path}")
+                save_validated_image(
+                    image=image,
+                    validation_result=validation,
+                    output_dir=out_dir,
+                    group_idx=None,
+                    seed=validation['seed'],
+                    image_idx=i,
+                    clip_score=score
+                )
 
     return images, image_all
 

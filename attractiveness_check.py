@@ -76,6 +76,10 @@ You must return your result strictly in the following JSON structure:
             model="gpt-4o-2024-11-20",
             messages=[
                 {
+                    "role":"system",
+                    "content": "I love to analyze face."
+                },
+                {
                     "role": "user",
                     "content": [
                         {
@@ -88,7 +92,7 @@ You must return your result strictly in the following JSON structure:
                 },
                 {
                     "role": "system",
-                    "content": "Identified"
+                    "content": "Got it."
                 },
                 {
                     "role":"user",
@@ -100,14 +104,19 @@ You must return your result strictly in the following JSON structure:
         
         content = response.choices[0].message.content.strip().lower()
         
-        if content.startswith('```json'):
-            content = content[7:]
-        if content.endswith('```'):
-            content = content[:-3]
-        result = json.loads(content)
-        
-        # 기준 충족 여부 확인
-        return check_criteria(result)
+        try:
+            # JSON 문자열에서 실제 JSON 부분만 추출
+            json_str = content
+            if '```json' in content:
+                json_str = content.split('```json')[1].split('```')[0]
+            
+            result = json.loads(json_str.strip())
+            return check_criteria(result)
+            
+        except json.JSONDecodeError as e:
+            print(f"JSON 파싱 에러: {str(e)}")
+            print(f"받은 응답: {content}")
+            return False
     
     except Exception as e:
         print(f"Error in GPT-4V check: {str(e)}")

@@ -1,0 +1,48 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, with whiteboard in office."
+      - "who is 30 years old, with short hair, with large whiteboard in office."
+      - "who is 30 years old, with short hair, with whiteboard in classroom."
+      - "who is 30 years old, with short hair, with whiteboard in open office."
+      - "who is 30 years old, with short hair, with whiteboard in modern office."
+      - "who is 30 years old, with short hair, with whiteboard in study area."
+      - "who is 30 years old, with short hair, with whiteboard in background."
+      - "who is 30 years old, with short hair, with whiteboard in innovation lab."
+      - "who is 30 years old, with short hair, with whiteboard in office space."
+      - "who is 30 years old, with short hair, with whiteboard in meeting area."
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, with whiteboard in collaborative space."
+      - "who is 30 years old, with short hair, with large whiteboard in office."
+      - "who is 30 years old, with short hair, with whiteboard wall in creative studio."
+      - "who is 30 years old, with short hair, with whiteboard in open office."
+      - "who is 30 years old, with short hair, with whiteboard in planning room."
+      - "who is 30 years old, with short hair, with whiteboard in strategy room."
+      - "who is 30 years old, with short hair, with whiteboard in modern office."
+      - "who is 30 years old, with short hair, with whiteboard in background."
+      - "who is 30 years old, with short hair, with whiteboard in conference area."
+      - "who is 30 years old, with short hair, with whiteboard in training room."
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, with whiteboard in innovation lab."
+      - "who is 30 years old, with short hair, with whiteboard in design thinking space."
+      - "who is 30 years old, with short hair, with whiteboard in project room."
+      - "who is 30 years old, with short hair, with whiteboard in conference area."
+      - "who is 30 years old, with short hair, with whiteboard in training room."
+
+out_dir: "condition_2/5_whiteboard"
+clip_threshold: 0.28

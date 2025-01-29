@@ -1,0 +1,50 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+# Settings divided into groups of 10
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a gray suit, standing in an office"
+      - "who is 30 years old, with short hair, wearing a gray suit, posed in front of office desks"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing in an office hallway"
+      - "who is 30 years old, with short hair, wearing a gray suit, in front of office cubicles"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing by office windows"
+      - "who is 30 years old, with short hair, wearing a gray suit, posed in an office lobby"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing near office equipment"
+      - "who is 30 years old, with short hair, wearing a gray suit, in an office doorway"
+      - "who is 30 years old, with short hair, wearing a gray suit, standing by office computers"
+      - "who is 30 years old, with short hair, wearing a gray suit, posed in a conference room"
+
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing in an office"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, posed in front of office"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing in an office hallway"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in front of office cubicles"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing by office windows"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, posed in an office lobby"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing near office equipment"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in an office"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, standing by office desk"
+      - "who is 30 years old, with short hair, wearing a charcoal suit, posed in an office"
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing a navy suit, standing in an office"
+      - "who is 30 years old, with short hair, wearing a navy suit, posed in front of office desks"
+      - "who is 30 years old, with short hair, wearing a navy suit, standing in an office hallway"
+      - "who is 30 years old, with short hair, wearing a navy suit, in front of office cubicles"
+      - "who is 30 years old, with short hair, wearing a navy suit, standing by office windows"
+
+out_dir: "condition_1/2_office"
+clip_threshold: 0.28

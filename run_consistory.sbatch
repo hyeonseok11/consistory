@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=white_man # Job name
+#SBATCH --job-name=black_man # Job name
 #SBATCH --output=%x_%j_%N.out # Standard output file: <name>_<job id>_<nodename>.out 
 # #SBATCH --error=%x_%j_%N.err # Standard error file: <name>_<job id>_<nodename>.err
 #SBATCH --partition=comm # Partition to submit the job to
@@ -9,7 +9,7 @@
 #SBATCH --mem=128G # Minimum memory per task
 
 # Optional
-#SBATCH --ntasks-per-node=1 # Number of tasks per node
+# SBATCH --ntasks-per-node=1 # Number of tasks per node
 # #SBATCH --time=01:00:00 # Time limit for the job
 # #SBATCH --nodes=2 # Number of nodes requested
 # #SBATCH --exclude=node3,node4 # Nodes to exclude from the job
@@ -29,11 +29,11 @@ for condition_dir in config/condition_*; do
     condition_num=$(echo $condition_dir | grep -o '[0-9]*$')
     
     # Loop through all yaml files in each condition directory
-    for config_file in $condition_dir/config_*.yaml; do
+    for config_file in $condition_dir/config_[0-9]_*.yaml; do
         if [ -f "$config_file" ]; then
             config_name=$(basename "$config_file")
             echo "Running: $config_file"
-            python consistory_CLI.py --condition $condition_num --config $config_name --concept_override "white man"
+            python consistory_CLI.py --condition $condition_num --config $config_name --concept_override "black man"
         fi
     done
 done

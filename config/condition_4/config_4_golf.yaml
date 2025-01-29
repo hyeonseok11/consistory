@@ -1,0 +1,49 @@
+run_type: batch
+gpu: 1
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking on a golf course"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing near a golf cart"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing by the clubhouse"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing near a golf bag"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing on a hill overlooking the green"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking along a tree-lined fairway"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing near a sand bunker"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing near a water hazard"
+      - "who is 30 years old, with short hair, wearing casual golf attire, resting near a shaded area on the course"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking toward the first tee"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual golf attire, enjoying the morning sun on the course"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking along a stone pathway on the course"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing on the green"
+      - "who is 30 years old, with short hair, wearing casual golf attire, watching the fairway"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking near the driving range"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking along the fairway"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing near a golf hole flag"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing on the edge of the fairway"
+      - "who is 30 years old, with short hair, wearing casual golf attire, waiting near a golf cart"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking along a golf course trail"
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking along the fairway"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing near a golf hole flag"
+      - "who is 30 years old, with short hair, wearing casual golf attire, standing on the edge of the fairway"
+      - "who is 30 years old, with short hair, wearing casual golf attire, waiting near a golf cart"
+      - "who is 30 years old, with short hair, wearing casual golf attire, walking along a golf course trail"
+
+out_dir: "condition_4/4_golf"
+clip_threshold: 0.28

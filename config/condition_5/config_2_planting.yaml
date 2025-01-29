@@ -1,0 +1,48 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+  
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing house clothes, watering potted plants in living room"
+      - "who is 30 years old, with short hair, wearing house clothes, planting seedlings with gardening gloves"
+      - "who is 30 years old, with short hair, wearing house clothes, watering plants with furrowed brow in study"
+      - "who is 30 years old, with short hair, wearing house clothes, pruning bonsai tree in sunroom"
+      - "who is 30 years old, with short hair, wearing house clothes, tending to multiple herb planters on windowsill in kitchen"
+      - "who is 30 years old, with short hair, wearing house clothes, reading gardening guide on tablet while fertilizing plants in conservatory"
+      - "who is 30 years old, with short hair, wearing house clothes, repotting flower plants in personal greenhouse"
+      - "who is 30 years old, with short hair, wearing house clothes, checking pH levels in hydroponic setup in spare room"
+      - "who is 30 years old, with short hair, wearing house clothes, arranging succulents in cozy attic loft"
+      - "who is 30 years old, with short hair, wearing house clothes, researching plant care while propagating cuttings in home office"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing house clothes, researching plant care while propagating cuttings in home office"
+      - "who is 30 years old, with short hair, wearing house clothes, misting vintage terrariums in cozy corner"
+      - "who is 30 years old, with short hair, wearing house clothes, pruning indoor jungle plants in rec room"
+      - "who is 30 years old, with short hair, wearing house clothes, labeling seed starting tray next to grow light in study"
+      - "who is 30 years old, with short hair, wearing house clothes, ordering new plants from online shops in living room"
+      - "who is 30 years old, with short hair, wearing house clothes, adjusting humidifier for tropical plants in den"
+      - "who is 30 years old, with short hair, wearing house clothes, setting up grow tent for seedlings in cleared basement space"
+      - "who is 30 years old, with short hair, wearing house clothes, repotting flower plants in personal greenhouse"
+      - "who is 30 years old, with short hair, wearing house clothes, checking pH levels in hydroponic setup in spare room"
+      - "who is 30 years old, with short hair, wearing house clothes, arranging succulents in cozy attic loft"
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing house clothes, setting up time-lapse camera for plant growth in sunny corner"
+      - "who is 30 years old, with short hair, wearing house clothes, creating pressed flower art for plant room walls"
+      - "who is 30 years old, with short hair, wearing house clothes, testing soil pH of potted plants in bedroom"
+      - "who is 30 years old, with short hair, wearing house clothes, tracking seed germination progress on computer in living room"
+      - "who is 30 years old, with short hair, wearing house clothes, experimenting with plant cuttings and propagation in plant nursery"
+      - "who is 30 years old, with short hair, wearing house clothes, adjusting grow lights for rare plant collection in quiet corner"
+out_dir: "condition_5/2_planting"
+clip_threshold: 0.28

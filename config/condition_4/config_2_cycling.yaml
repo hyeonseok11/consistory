@@ -1,0 +1,49 @@
+run_type: batch
+gpu: 1
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding on a scenic coastal road"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling through a countryside road with open fields"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking along a forest trail with tall trees"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, pedaling on a quiet mountain road"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking through a misty morning landscape"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking along a winding coastal cliff road"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding through a sunflower field"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling through a tree-lined street"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling through a tunnel of trees"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling on a foggy mountain path"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking near a mountain lake"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding through a quiet countryside village"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling on a road with cherry blossoms"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding past golden wheat fields"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking past green fields"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling on a rural road"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding away on a misty trail"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling past autumn trees"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding near a calm lake"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking on a foggy road"
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual cycling gear, biking along a winding coastal cliff road"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, riding through a sunflower field"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling through a tree-lined street"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling through a tunnel of trees"
+      - "who is 30 years old, with short hair, wearing casual cycling gear, cycling on a foggy mountain path"
+
+out_dir: "condition_4/2_cycling"
+clip_threshold: 0.28

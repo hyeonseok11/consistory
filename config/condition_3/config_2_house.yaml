@@ -1,0 +1,48 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, in the living room"
+      - "who is 30 years old, with short hair, wearing casual attire, in the cozy living room"
+      - "who is 30 years old, with short hair, wearing casual outfit, at home"
+      - "who is 30 years old, with short hair, wearing casual clothes, inside the house"
+      - "who is 30 years old, with short hair, wearing casual clothing, in the living area"
+      - "who is 30 years old, with short hair, wearing casual clothes, in the home"
+      - "who is 30 years old, with short hair, wearing casual wear, in the living space"
+      - "who is 30 years old, with short hair, wearing casual attire, in the residence"
+      - "who is 30 years old, with short hair, wearing casual outfit, in the domestic environment"
+      - "who is 30 years old, with short hair, wearing casual clothes, in the household"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, in the cozy living room"
+      - "who is 30 years old, with short hair, wearing casual attire, inside the house"
+      - "who is 30 years old, with short hair, wearing casual wear, in the living room"
+      - "who is 30 years old, with short hair, wearing casual clothes, at home"
+      - "who is 30 years old, with short hair, wearing casual attire, in the domestic environment"
+      - "who is 30 years old, with short hair, wearing casual clothes, in the residence"
+      - "who is 30 years old, with short hair, wearing casual outfit, in the domestic setting"
+      - "who is 30 years old, with short hair, wearing casual clothes, in the household"
+      - "who is 30 years old, with short hair, wearing casual clothing, in the home"
+      - "who is 30 years old, with short hair, wearing casual attire, in the residence"
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual clothes, in the home"
+      - "who is 30 years old, with short hair, wearing casual wear, in the living space"
+      - "who is 30 years old, with short hair, wearing casual attire, in the residence"
+      - "who is 30 years old, with short hair, wearing casual outfit, in the domestic environment"
+      - "who is 30 years old, with short hair, wearing casual clothes, in the household"
+
+out_dir: "condition_3/2_house"
+clip_threshold: 0.28

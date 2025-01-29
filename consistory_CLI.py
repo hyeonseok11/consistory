@@ -190,12 +190,16 @@ if __name__ == '__main__':
             
             # Apply concept override if specified
             if args.concept_override:
-                if 'concept_token' in config and isinstance(config['concept_token'], list) and len(config['concept_token']) > 0:
-                    original_concept = config['concept_token'][0]
-                    config['concept_token'][0] = args.concept_override
-                    if 'subject' in config:
-                        config['subject'] = config['subject'].replace(original_concept, args.concept_override)
-                    print(f"\nOverriding concept: '{original_concept}' -> '{args.concept_override}'")
+                PERSON_CONCEPT_TOKEN = "${PERSON_CONCEPT}"
+                if 'concept_token' in config and isinstance(config['concept_token'], list):
+                    # Find ${PERSON_CONCEPT} in concept_token list
+                    for i, token in enumerate(config['concept_token']):
+                        if token == PERSON_CONCEPT_TOKEN:
+                            config['concept_token'][i] = args.concept_override
+                            if 'subject' in config:
+                                config['subject'] = config['subject'].replace(PERSON_CONCEPT_TOKEN, args.concept_override)
+                            print(f"\nOverriding concept: '{PERSON_CONCEPT_TOKEN}' -> '{args.concept_override}'")
+                            break
                     
                     # Set output directory based on concept_override and original out_dir
                     concept_dir = args.concept_override.replace(" ", "_")

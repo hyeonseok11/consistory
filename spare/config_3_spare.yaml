@@ -1,0 +1,33 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing everyday garments, on a bench in a park's shaded area"
+      - "who is 30 years old, with short hair, wearing casual clothing, on a bench along a park trail"
+      - "who is 30 years old, with short hair, wearing comfortable wear, on a park bench by a footpath"
+      - "who is 30 years old, with short hair, wearing relaxed clothes, on a bench in a park's central area"
+      - "who is 30 years old, with short hair, wearing informal outfit, on a bench in a park's quiet corner"
+      - "who is 30 years old, with short hair, wearing leisure attire, on a park bench overlooking a garden"
+
+
+  group_2:
+    settings:
+
+
+  group_3:
+    settings:
+
+
+out_dir: "condition_3/spare"
+clip_threshold: 0.28

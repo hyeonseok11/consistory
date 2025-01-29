@@ -1,0 +1,51 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+# Settings divided into groups of 10
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a gray suit, on a rooftop with city skyline."
+      - "who is 30 years old, with short hair, wearing a gray suit, atop a building overlooking the city."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a roof with urban view."
+      - "who is 30 years old, with short hair, wearing a gray suit, at a rooftop terrace facing the city."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a top floor with panoramic views."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a rooftop with city view."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a rooftop against city backdrop."
+      - "who is 30 years old, with short hair, wearing a gray suit, atop a skyscraper with city view."
+      - "who is 30 years old, with short hair, wearing a gray suit, at a rooftop with urban views."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a rooftop overlooking the cityscape."
+
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a charcoal suit, on a rooftop against city backdrop."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, atop a skyscraper with city view."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, on a high-rise roof overlooking the city."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, at a rooftop with citywide vistas."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, on a downtown rooftop among tall buildings."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, at a rooftop with sprawling city views."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, on a tower overlooking the urban landscape."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, at a rooftop with urban views."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, on a building's apex with skyline background."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, at a rooftop with sweeping city views."
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing a gray suit, atop a building overlooking the city."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a roof with urban view."
+      - "who is 30 years old, with short hair, wearing a gray suit, at a rooftop terrace facing the city."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a top floor with panoramic views."
+      - "who is 30 years old, with short hair, wearing a gray suit, on a rooftop with city view."
+
+out_dir: "condition_1/3_rooftop"
+clip_threshold: 0.28

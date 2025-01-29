@@ -1,0 +1,48 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing snowboarding gear, sitting on a snowboard at the top of a slope"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, taking a break at a snowy viewpoint"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, standing near a ski lift with a snowboard"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, sitting on a snowy ridge with a snowboard"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, walking towards a snowboard trail"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, leaning on a snowboard at a ski resort"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, walking uphill with a snowboard"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, waiting in line at a ski lift with a snowboard"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, riding along a snowy ridgeline"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, smoothly descending a groomed trail"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing snowboarding gear, snowboarding down a mountain"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, gliding on fresh snow"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, riding through a tree-lined trail"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, speeding down a steep run"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, cruising on a wide-open slope"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, descending on a snowy mountain"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, riding smoothly on packed snow"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, snowboarding under a clear blue sky"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, riding through fresh powder"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, gliding across a snowy ridge"
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing snowboarding gear, descending on a snowy mountain"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, riding smoothly on packed snow"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, snowboarding under a clear blue sky"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, riding through fresh powder"
+      - "who is 30 years old, with short hair, wearing snowboarding gear, gliding across a snowy ridge"
+
+out_dir: "condition_4/5_snowboard"
+clip_threshold: 0.28

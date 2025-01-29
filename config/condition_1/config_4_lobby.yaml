@@ -1,0 +1,50 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+# Settings divided into groups of 10
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing a gray suit, in a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a company reception area."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a bustling office lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a modern business lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, near the elevators of a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, by the reception desk of a company lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a sleek office entrance area."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a well-lit corporate foyer."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a busy company lobby."
+      - "who is 30 years old, with short hair, wearing a gray suit, in a office reception hall."
+
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, at a company's main entrance."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a busy office lobby."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, near the reception area of a corporate building."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a modern business lobby setting."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, by the elevators in a company foyer."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a sleek corporate entrance hall."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a bustling office lobby."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in a well-designed company reception area."
+      - "who is 30 years old, with short hair, wearing a charcoal suit, in an impressive corporate lobby space."
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing a navy suit, in a corporate lobby."
+      - "who is 30 years old, with short hair, wearing a navy suit, at a company's main entrance."
+      - "who is 30 years old, with short hair, wearing a navy suit, in a busy office lobby."
+      - "who is 30 years old, with short hair, wearing a navy suit, in a modern business lobby."
+      - "who is 30 years old, with short hair, wearing a navy suit, in a busy company lobby."
+
+out_dir: "condition_1/4_lobby"
+clip_threshold: 0.28

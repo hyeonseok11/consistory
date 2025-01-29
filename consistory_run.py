@@ -94,7 +94,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                         perform_sdsa=True, perform_injection=True,
                         downscale_rate=4, n_achors=2,
                         clip_threshold=0.28,
-                        max_attempts=5):  
+                        max_attempts=3):  
     device = story_pipeline.device
     tokenizer = story_pipeline.tokenizer
     float_type = story_pipeline.dtype
@@ -217,9 +217,7 @@ def run_batch_generation(story_pipeline, prompts, concept_token,
                         clip_scores.append(clip_score)
                         validation_results[original_idx] = {
                             'seed': current_seed,
-                            'passed_clip': clip_score >= clip_threshold,
-                            'passed_gpt4v': check_image_with_gpt4o(image, prompts[original_idx]),
-                            'passed_attractiveness': attractiveness_check(image)
+                            **validate_image(image, prompts[original_idx], clip_score, clip_threshold)
                         }
                 break
             current_mask_dropout = max(0.01, current_mask_dropout - 0.05)
@@ -532,9 +530,7 @@ def run_extra_generation(story_pipeline, prompts, concept_token,
                         clip_scores.append(clip_score)
                         validation_results[original_idx] = {
                             'seed': seed,
-                            'passed_clip': clip_score >= clip_threshold,
-                            'passed_gpt4v': check_image_with_gpt4o(image, prompts[original_idx]),
-                            'passed_attractiveness': attractiveness_check(image)
+                            **validate_image(image, prompts[original_idx], clip_score, clip_threshold)
                         }
                 break
             current_mask_dropout = max(0.01, current_mask_dropout - 0.05)

@@ -1,0 +1,37 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "${PERSON_CONCEPT}"
+concept_token:
+  - "${PERSON_CONCEPT}"
+  - "30 years olds"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old with short hair, holding papers at an executive desk."
+      - "who is 30 years old with short hair, holding papers in a business center."
+      - "who is 30 years old with short hair, holding papers in a workspace."
+      - "who is 30 years old with short hair, holding papers at an office desk."
+      - "who is 30 years old with short hair, holding papers in an office."
+
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, typing on a laptop, at a coffee shop."
+      - "who is 30 years old, with short hair, typing on a laptop, in a serene cafe setting."
+      - "who is 30 years old, with short hair, typing on a laptop, at a coffee bar."
+      - "who is 30 years old, with short hair, typing on a laptop, at a charming cafe."
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, with whiteboard in modern office."
+      - "who is 30 years old, with short hair, with whiteboard in study area."
+      - "who is 30 years old, with short hair, with whiteboard in background."
+
+
+out_dir: "condition_2/spare"
+clip_threshold: 0.28

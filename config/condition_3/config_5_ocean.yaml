@@ -1,0 +1,48 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual attire, standing on the beach with ocean background"
+      - "who is 30 years old, with short hair, wearing beachwear, posing by the ocean"
+      - "who is 30 years old, with short hair, wearing casual clothes, walking along the shoreline"
+      - "who is 30 years old, with short hair, wearing relaxed clothing, enjoying the ocean view"
+      - "who is 30 years old, with short hair, wearing summer outfit, with waves in the background"
+      - "who is 30 years old, with short hair, wearing beach-appropriate attire, near the ocean"
+      - "who is 30 years old, with short hair, wearing casual dress, standing near ocean waves"
+      - "who is 30 years old, with short hair, wearing laid-back clothes, on sandy beach with ocean backdrop"
+      - "who is 30 years old, with short hair, wearing comfortable beach attire, by the ocean"
+      - "who is 30 years old, with short hair, wearing casual beachwear, with ocean scenery"
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, wearing casual beach outfit, standing near ocean waves"
+      - "who is 30 years old, with short hair, wearing relaxed attire, at oceanfront"
+      - "who is 30 years old, with short hair, wearing beach attire, with ocean in background"
+      - "who is 30 years old, with short hair, wearing summer clothing, enjoying ocean breeze"
+      - "who is 30 years old, with short hair, wearing casual dress, on beach with ocean view"
+      - "who is 30 years old, with short hair, wearing beachwear, with ocean scenery"
+      - "who is 30 years old, with short hair, wearing casual clothes, near crashing waves"
+      - "who is 30 years old, with short hair, wearing comfortable attire, by the seaside"
+      - "who is 30 years old, with short hair, wearing casual outfit, with ocean horizon"
+      - "who is 30 years old, with short hair, wearing beach-ready outfit, facing the ocean"
+
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, wearing beachwear, with ocean scenery"
+      - "who is 30 years old, with short hair, wearing casual clothes, near crashing waves"
+      - "who is 30 years old, with short hair, wearing comfortable attire, by the seaside"
+      - "who is 30 years old, with short hair, wearing casual outfit, with ocean horizon"
+      - "who is 30 years old, with short hair, wearing beach-ready outfit, facing the ocean"
+out_dir: "condition_3/5_ocean"
+clip_threshold: 0.28

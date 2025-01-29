@@ -1,0 +1,47 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "short hair"
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old, with short hair, reviewing documents, on a domestic flight."
+      - "who is 30 years old, with short hair, reviewing documents, on an international flight."
+      - "who is 30 years old, with short hair, reviewing documents, in economy class."
+      - "who is 30 years old, with short hair, reviewing documents, on a short-haul flight."
+      - "who is 30 years old, with short hair, reviewing documents, during a long-haul flight."
+      - "who is 30 years old, with short hair, reviewing documents, in business class."
+      - "who is 30 years old, with short hair, reviewing documents, on a transatlantic flight."
+      - "who is 30 years old, with short hair, reviewing documents, in a plane seat."
+      - "who is 30 years old, with short hair, reviewing documents, on a business class airplane."
+      - "who is 30 years old, with short hair, reviewing documents, during airplane takeoff."
+  group_2:
+    settings:
+      - "who is 30 years old, with short hair, reviewing documents, on a high-speed train."
+      - "who is 30 years old, with short hair, reviewing documents, on a train seat."
+      - "who is 30 years old, with short hair, reviewing documents, on a bullet train."
+      - "who is 30 years old, with short hair, reviewing documents, in a first-class train compartment."
+      - "who is 30 years old, with short hair, reviewing documents, on a commuter train."
+      - "who is 30 years old, with short hair, reviewing documents, on a sleeper train."
+      - "who is 30 years old, with short hair, reviewing documents, on an intercity express."
+      - "who is 30 years old, with short hair, reviewing documents, on a regional train."
+      - "who is 30 years old, with short hair, reviewing documents, during a long-distance train journey."
+      - "who is 30 years old, with short hair, reviewing documents, in a train."
+  group_3:
+    settings:
+      - "who is 30 years old, with short hair, reviewing documents,on an international flight."
+      - "who is 30 years old, with short hair, reviewing documents, on a domestic flight."
+      - "who is 30 years old, with short hair, reviewing documents, on a high-speed train."
+      - "who is 30 years old, with short hair, reviewing documents, during a short flight."
+      - "who is 30 years old, with short hair, reviewing documents, on a regional train."
+
+out_dir: "condition_2/4_business"
+clip_threshold: 0.28

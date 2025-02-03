@@ -9,43 +9,43 @@ concept_token:
   - "good-looking"
   - "${PERSON_CONCEPT}"
   - "30 years old"
-  - "short hair"
+  - "${HAIR_CONCEPT}"
 
 # Settings divided into groups of 10
 settings_groups:
   group_1:
     settings:
-      - "who is 30 years old, with short hair, wearing a gray suit, in a glass office with high-rise views."
-      - "who is 30 years old, with short hair, wearing a gray suit, by a window overlooking skyscrapers."
-      - "who is 30 years old, with short hair, wearing a gray suit, at a desk facing tall buildings through glass walls."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a glass-walled room with urban skyline vistas."
-      - "who is 30 years old, with short hair, wearing a gray suit, in an office with panoramic views of skyscrapers."
-      - "who is 30 years old, with short hair, wearing a gray suit, by floor-to-ceiling windows showing high-rises."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a glass office with cityscape backdrop."
-      - "who is 30 years old, with short hair, wearing a gray suit, at a workstation with views of towering buildings."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a glass corner office with cityscape views."
-      - "who is 30 years old, with short hair, wearing a gray suit, by transparent walls revealing surrounding skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a glass office with high-rise views."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, by a window overlooking skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, at a desk facing tall buildings through glass walls."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a glass-walled room with urban skyline vistas."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in an office with panoramic views of skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, by floor-to-ceiling windows showing high-rises."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a glass office with cityscape backdrop."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, at a workstation with views of towering buildings."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a glass corner office with cityscape views."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, by transparent walls revealing surrounding skyscrapers."
 
   group_2:
     settings:
-      - "who is 30 years old, with short hair, wearing charcoal suit, in a glass-walled office overlooking high-rises."
-      - "who is 30 years old, with short hair, wearing charcoal suit, at an office with views of surrounding skyscrapers."
-      - "who is 30 years old, with short hair, wearing charcoal suit, in a glass corridor facing tall buildings."
-      - "who is 30 years old, with short hair, wearing charcoal suit, by windows showing the urban skyline."
-      - "who is 30 years old, with short hair, wearing charcoal suit, in a glass office with cityscape backdrop."
-      - "who is 30 years old, with short hair, wearing charcoal suit, at a workstation overlooking the city's high-rises."
-      - "who is 30 years old, with short hair, wearing charcoal suit, in a glass-enclosed space with panoramic city views."
-      - "who is 30 years old, with short hair, wearing charcoal suit, by transparent walls showcasing surrounding towers."
-      - "who is 30 years old, with short hair, wearing charcoal suit, in an office with views of neighboring skyscrapers."
-      - "who is 30 years old, with short hair, wearing charcoal suit, by transparent walls revealing surrounding skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, in a glass-walled office overlooking high-rises."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, at an office with views of surrounding skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, in a glass corridor facing tall buildings."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, by windows showing the urban skyline."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, in a glass office with cityscape backdrop."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, at a workstation overlooking the city's high-rises."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, in a glass-enclosed space with panoramic city views."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, by transparent walls showcasing surrounding towers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, in an office with views of neighboring skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing charcoal suit, by transparent walls revealing surrounding skyscrapers."
 
   group_3:
     settings:
-      - "who is 30 years old, with short hair, wearing a navy suit, in a glass office with cityscape backdrop."
-      - "who is 30 years old, with short hair, wearing a navy suit, at an office with views of surrounding skyscrapers."
-      - "who is 30 years old, with short hair, wearing a navy suit, in a glass corridor facing tall buildings."
-      - "who is 30 years old, with short hair, wearing a navy suit, in a glass-enclosed space with panoramic city views."
-      - "who is 30 years old, with short hair, wearing a navy suit, by transparent walls revealing the city skyline."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a glass office with cityscape backdrop."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, at an office with views of surrounding skyscrapers."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a glass corridor facing tall buildings."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a glass-enclosed space with panoramic city views."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, by transparent walls revealing the city skyline."
 
 out_dir: "condition_1/5_glass"
 clip_threshold: 0.28

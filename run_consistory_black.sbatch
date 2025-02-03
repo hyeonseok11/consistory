@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=black_man # Job name
+#SBATCH --job-name=black_woman # Job name
 #SBATCH --output=%x_%j_%N.out # Standard output file: <name>_<job id>_<nodename>.out 
 # #SBATCH --error=%x_%j_%N.err # Standard error file: <name>_<job id>_<nodename>.err
 #SBATCH --partition=comm # Partition to submit the job to
@@ -24,10 +24,15 @@ ENV_NAME=consistory
 # Job execution commands
 source $ENV_ACTIVATE_PATH $ENV_NAME # conda activate
 
-python consistory_CLI.py --condition 4 --config config_1_hiking.yaml --concept_override "asian man"
-
-python consistory_CLI.py --condition 4 --config config_2_cycling.yaml --concept_override "asian man"
-
-python consistory_CLI.py --condition 4 --config config_3_running.yaml --concept_override "asian man"
-
-python consistory_CLI.py --condition 4 --config config_4_golf.yaml --concept_override "asian man"
+for condition_dir in config/condition_*; do
+    condition_num=$(echo $condition_dir | grep -o '[0-9]*$')
+    
+    # Loop through all yaml files in each condition directory
+    for config_file in $condition_dir/config_[0-9]_*.yaml; do
+        if [ -f "$config_file" ]; then
+            config_name=$(basename "$config_file")
+            echo "Running: $config_file"
+            python consistory_CLI.py --condition $condition_num --config $config_name --concept_override "black woman" --hair_override "long hair"
+        fi
+    done
+done

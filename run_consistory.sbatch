@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=black_man # Job name
+#SBATCH --job-name=white_woman # Job name
 #SBATCH --output=%x_%j_%N.out # Standard output file: <name>_<job id>_<nodename>.out 
 # #SBATCH --error=%x_%j_%N.err # Standard error file: <name>_<job id>_<nodename>.err
 #SBATCH --partition=comm # Partition to submit the job to
@@ -33,7 +33,7 @@ for condition_dir in config/condition_*; do
         if [ -f "$config_file" ]; then
             config_name=$(basename "$config_file")
             echo "Running: $config_file"
-            python consistory_CLI.py --condition $condition_num --config $config_name --concept_override "black man"
+            python consistory_CLI.py --condition $condition_num --config $config_name --concept_override "white woman" --hair_override "long hair"
         fi
     done
 done

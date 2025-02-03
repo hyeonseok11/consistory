@@ -1,5 +1,5 @@
 run_type: batch
-gpu: 1
+gpu: 0
 seed: 40
 mask_dropout: 0.4
 same_latent: false
@@ -9,41 +9,41 @@ concept_token:
   - "good-looking"
   - "${PERSON_CONCEPT}"
   - "30 years old"
-  - "short hair"
+  - "${HAIR_CONCEPT}"
 
 settings_groups:
   group_1:
     settings:
-      - "who is 30 years old, with short hair, wearing hiking gear, watching the sunrise from a mountain peak"
-      - "who is 30 years old, with short hair, wearing hiking gear, enjoying the view from a high trail"
-      - "who is 30 years old, with short hair, wearing hiking gear, standing near a waterfall in the mountains"
-      - "who is 30 years old, with short hair, wearing hiking gear, walking through pine forest"
-      - "who is 30 years old, with short hair, wearing hiking gear, gazing at the mountain horizon"
-      - "who is 30 years old, with short hair, wearing hiking gear, standing at the edge of a scenic overlook"
-      - "who is 30 years old, with short hair, wearing hiking gear, surrounded by autumn foliage in the mountains"
-      - "who is 30 years old, with short hair, wearing hiking gear, hiking under a bright blue sky"
-      - "who is 30 years old, with short hair, wearing hiking gear, standing by a peaceful mountain lake"
-      - "who is 30 years old, with short hair, wearing hiking gear, walking through an open field with hills"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, watching the sunrise from a mountain peak"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, enjoying the view from a high trail"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing near a waterfall in the mountains"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, walking through pine forest"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, gazing at the mountain horizon"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing at the edge of a scenic overlook"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, surrounded by autumn foliage in the mountains"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, hiking under a bright blue sky"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing by a peaceful mountain lake"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, walking through an open field with hills"
   group_2:
     settings:
-      - "who is 30 years old, with short hair, wearing hiking gear, standing near a rock formation on the trail"
-      - "who is 30 years old, with short hair, wearing hiking gear, admiring the vast landscape from the trail"
-      - "who is 30 years old, with short hair, wearing hiking gear, standing on a mountain ridge with rolling hills in the background"
-      - "who is 30 years old, with short hair, wearing hiking gear, walking along a trail lined with wildflowers"
-      - "who is 30 years old, with short hair, wearing hiking gear, gazing at distant peaks under a golden sunset"
-      - "who is 30 years old, with short hair, wearing hiking gear, trekking along a misty forest path"
-      - "who is 30 years old, with short hair, wearing hiking gear, exploring a rugged coastal trail with cliffs nearby"
-      - "who is 30 years old, with short hair, wearing hiking gear, enjoying the soft morning light on a quiet mountain path"
-      - "who is 30 years old, with short hair, wearing hiking gear, standing on a rocky outcrop overlooking a deep valley"
-      - "who is 30 years old, with short hair, wearing hiking gear, walking along a quiet mountain stream with clear water"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing near a rock formation on the trail"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, admiring the vast landscape from the trail"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing on a mountain ridge with rolling hills in the background"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, walking along a trail lined with wildflowers"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, gazing at distant peaks under a golden sunset"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, trekking along a misty forest path"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, exploring a rugged coastal trail with cliffs nearby"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, enjoying the soft morning light on a quiet mountain path"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing on a rocky outcrop overlooking a deep valley"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, walking along a quiet mountain stream with clear water"
 
   group_3:
     settings:
-      - "who is 30 years old, with short hair, wearing hiking gear, standing at the edge of a scenic overlook"
-      - "who is 30 years old, with short hair, wearing hiking gear, surrounded by autumn foliage in the mountains"
-      - "who is 30 years old, with short hair, wearing hiking gear, hiking under a bright blue sky"
-      - "who is 30 years old, with short hair, wearing hiking gear, standing by a peaceful mountain lake"
-      - "who is 30 years old, with short hair, wearing hiking gear, walking through an open field with hills"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing at the edge of a scenic overlook"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, surrounded by autumn foliage in the mountains"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, hiking under a bright blue sky"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, standing by a peaceful mountain lake"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing hiking gear, walking through an open field with hills"
     
 
 out_dir: "condition_4/1_hiking"

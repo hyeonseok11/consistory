@@ -9,42 +9,42 @@ concept_token:
   - "good-looking"
   - "${PERSON_CONCEPT}"
   - "30 years old"
-  - "short hair"
+  - "${HAIR_CONCEPT}"
 # Settings divided into groups of 10
 settings_groups:
   group_1:
     settings:
-      - "who is 30 years old, with short hair, wearing a gray suit, in a professional photo studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a well-lit studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a bright photography studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a clean studio setting."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a modern photo studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a professional studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a spacious photo studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a well-equipped photography studio."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a brightly lit studio space."
-      - "who is 30 years old, with short hair, wearing a gray suit, in a professional photography studio setting."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a professional photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a well-lit studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a bright photography studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a clean studio setting."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a modern photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a professional studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a spacious photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a well-equipped photography studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a brightly lit studio space."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a gray suit, in a professional photography studio setting."
 
   group_2:
     settings:
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a professional photo studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a well-lit studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a bright photography studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a clean studio setting."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a modern photo studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a professional studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a spacious photo studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a well-equipped photography studio."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a brightly lit studio space."
-      - "who is 30 years old, with short hair, wearing a charcoal suit, in a professional photography studio setting."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a professional photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a well-lit studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a bright photography studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a clean studio setting."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a modern photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a professional studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a spacious photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a well-equipped photography studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a brightly lit studio space."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a charcoal suit, in a professional photography studio setting."
   
   group_3:
     settings:
-      - "who is 30 years old, with short hair, wearing a navy suit, in a professional photo studio."
-      - "who is 30 years old, with short hair, wearing a navy suit, in a well-lit studio."
-      - "who is 30 years old, with short hair, wearing a navy suit, in a bright photography studio."
-      - "who is 30 years old, with short hair, wearing a navy suit, in a clean studio setting."
-      - "who is 30 years old, with short hair, wearing a navy suit, in a modern photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a professional photo studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a well-lit studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a bright photography studio."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a clean studio setting."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing a navy suit, in a modern photo studio."
 
 out_dir: "condition_1/1_studio"
 clip_threshold: 0.28

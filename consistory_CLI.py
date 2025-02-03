@@ -162,7 +162,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--condition', type=str, help='Category of condition to use')
     parser.add_argument('--config', type=str, help='Path to YAML config file in config directory')
-    parser.add_argument('--concept_override', type=str, help='Override the concept token in config (e.g., "black man" instead of "white man")')
+    parser.add_argument('--concept_override', type=str, help='Override the person concept token in config (e.g., "black man" instead of "white man")')
+    parser.add_argument('--hair_override', type=str, help='Override the hair concept token in config (e.g., "short hair" or "long hair")')
     parser.add_argument('--run_type', default="batch", type=str, required=False) # batch, cached
     parser.add_argument('--gpu', default=0, type=int, required=False)
     parser.add_argument('--seed', default=40, type=int, required=False)
@@ -188,21 +189,45 @@ if __name__ == '__main__':
         with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
             
-            # Apply concept override if specified
-            if args.concept_override:
-                PERSON_CONCEPT_TOKEN = "${PERSON_CONCEPT}"
-                if 'concept_token' in config and isinstance(config['concept_token'], list):
-                    # Find ${PERSON_CONCEPT} in concept_token list
+            # Apply concept overrides if specified
+            PERSON_CONCEPT_TOKEN = "${PERSON_CONCEPT}"
+            HAIR_CONCEPT_TOKEN = "${HAIR_CONCEPT}"
+            
+            if 'concept_token' in config and isinstance(config['concept_token'], list):
+                # Handle person concept override
+                if args.concept_override:
                     for i, token in enumerate(config['concept_token']):
                         if token == PERSON_CONCEPT_TOKEN:
                             config['concept_token'][i] = args.concept_override
                             if 'subject' in config:
                                 config['subject'] = config['subject'].replace(PERSON_CONCEPT_TOKEN, args.concept_override)
-                            print(f"\nOverriding concept: '{PERSON_CONCEPT_TOKEN}' -> '{args.concept_override}'")
+                            print(f"\nOverriding person concept: '{PERSON_CONCEPT_TOKEN}' -> '{args.concept_override}'")
+                            break
+                
+                # Handle hair concept override
+                if args.hair_override:
+                    # Replace in concept_token
+                    for i, token in enumerate(config['concept_token']):
+                        if token == HAIR_CONCEPT_TOKEN:
+                            config['concept_token'][i] = args.hair_override
+                            if 'subject' in config:
+                                config['subject'] = config['subject'].replace(HAIR_CONCEPT_TOKEN, args.hair_override)
+                            print(f"\nOverriding hair concept: '{HAIR_CONCEPT_TOKEN}' -> '{args.hair_override}'")
                             break
                     
-                    # Set output directory based on concept_override and original out_dir
-                    concept_dir = args.concept_override.replace(" ", "_")
+                    # Replace in settings_groups
+                    if 'settings_groups' in config:
+                        for group in config['settings_groups'].values():
+                            if 'settings' in group:
+                                group['settings'] = [setting.replace(HAIR_CONCEPT_TOKEN, args.hair_override) for setting in group['settings']]
+                
+                # Set output directory based on overrides and original out_dir
+                concept_parts = []
+                if args.concept_override:
+                    concept_parts.append(args.concept_override.replace(" ", "_"))
+                
+                if concept_parts:
+                    concept_dir = "_".join(concept_parts)
                     if 'out_dir' in config:
                         config['out_dir'] = os.path.join(concept_dir, config['out_dir'])
                     else:
@@ -213,13 +238,13 @@ if __name__ == '__main__':
             # Update args with config values, CLI arguments take precedence
             args_dict = vars(args)
             settings_groups = config.pop('settings_groups', None)  # Extract settings_groups before updating args
-            print(settings_groups)
             for key, value in config.items():
                 if key in args_dict and args_dict[key] == parser.get_default(key):  # Only update if arg is at default value
                     setattr(args, key, value)
         
     # Print final configuration
     print_args(args, config)
+    print(settings_groups)
 
     if args.run_type == "batch":
         run_batch(args.gpu, args.seed, args.mask_dropout, args.same_latent, args.style, 

@@ -1,5 +1,5 @@
 run_type: batch
-gpu: 1
+gpu: 0
 seed: 40
 mask_dropout: 0.4
 same_latent: false
@@ -9,41 +9,41 @@ concept_token:
   - "good-looking"
   - "${PERSON_CONCEPT}"
   - "30 years old"
-  - "short hair"
+  - "${HAIR_CONCEPT}"
 
 settings_groups:
   group_1:
     settings:
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging on a tree-lined path"
-      - "who is 30 years old, with short hair, wearing casual running clothes, running near a riverbank"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging on a park trail"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging on a city sidewalk"
-      - "who is 30 years old, with short hair, wearing casual running clothes, running in a hilly area"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging under cherry blossom trees"
-      - "who is 30 years old, with short hair, wearing casual running clothes, running through an open field"
-      - "who is 30 years old, with short hair, wearing casual running clothes, smiling while running"
-      - "who is 30 years old, with short hair, wearing casual running clothes, cooling down after jogging"
-      - "who is 30 years old, with short hair, wearing casual running clothes, waving at a friend while running"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging on a tree-lined path"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, running near a riverbank"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging on a park trail"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging on a city sidewalk"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, running in a hilly area"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging under cherry blossom trees"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, running through an open field"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, smiling while running"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, cooling down after jogging"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, waving at a friend while running"
   group_2:
     settings:
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging along the beach at sunset"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging on a foggy morning"
-      - "who is 30 years old, with short hair, wearing casual running clothes, running through a quiet suburban street"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging near a lake with mountains in the background"
-      - "who is 30 years old, with short hair, wearing casual running clothes, running on a trail covered in autumn leaves"
-      - "who is 30 years old, with short hair, wearing casual running clothes, casually jogging around the neighborhood"
-      - "who is 30 years old, with short hair, wearing casual running clothes, smiling after finishing a run"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging under the evening sky"
-      - "who is 30 years old, with short hair, wearing casual running clothes, checking a fitness tracker while jogging"
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging while holding a tumbler"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging along the beach at sunset"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging on a foggy morning"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, running through a quiet suburban street"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging near a lake with mountains in the background"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, running on a trail covered in autumn leaves"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, casually jogging around the neighborhood"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, smiling after finishing a run"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging under the evening sky"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, checking a fitness tracker while jogging"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging while holding a tumbler"
 
   group_3:
     settings:
-      - "who is 30 years old, with short hair, wearing casual running clothes, jogging under cherry blossom trees"
-      - "who is 30 years old, with short hair, wearing casual running clothes, running through an open field"
-      - "who is 30 years old, with short hair, wearing casual running clothes, smiling while running"
-      - "who is 30 years old, with short hair, wearing casual running clothes, cooling down after jogging"
-      - "who is 30 years old, with short hair, wearing casual running clothes, waving at a friend while running"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, jogging under cherry blossom trees"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, running through an open field"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, smiling while running"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, cooling down after jogging"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual running clothes, waving at a friend while running"
 
 
 out_dir: "condition_4/3_running"

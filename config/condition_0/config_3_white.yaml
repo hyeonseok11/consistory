@@ -13,17 +13,17 @@ concept_token:
 # Settings divided into groups of 10
 settings_groups:
 
-  group_1:
-    settings:
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in study area, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in background, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in innovation lab, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office space, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in meeting area, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in conference room, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in classroom, hands down."
-      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in brainstorming session, hands down."
+#  group_1:
+#    settings:
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in study area, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in background, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in innovation lab, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office space, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in meeting area, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in conference room, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in classroom, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in brainstorming session, hands down."
 
   group_2:
     settings:

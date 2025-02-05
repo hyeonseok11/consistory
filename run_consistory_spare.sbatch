@@ -24,8 +24,8 @@ ENV_NAME=consistory
 # Job execution commands
 source $ENV_ACTIVATE_PATH $ENV_NAME # conda activate
 
-python consistory_CLI.py --condition 0 --config config_1_asian.yaml --concept_override "asian woman" --hair_override "long hair"
+#python consistory_CLI.py --condition 0 --config config_1_asian.yaml --concept_override "asian woman" --hair_override "long hair"
 
 #python consistory_CLI.py --condition 0 --config config_2_black.yaml --concept_override "black woman" --hair_override "long hair"
 
-#python consistory_CLI.py --condition 0 --config config_3_white.yaml --concept_override "white woman" --hair_override "long hair"
+python consistory_CLI.py --condition 0 --config config_3_white.yaml --concept_override "white woman" --hair_override "long hair"

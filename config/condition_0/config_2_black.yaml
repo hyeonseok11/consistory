@@ -1,0 +1,71 @@
+run_type: batch
+gpu: 0
+seed: 40
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "${HAIR_CONCEPT}"
+# Settings divided into groups of 10
+settings_groups:
+  group_1:
+    settings:
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in an open-plan office, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in a startup office, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in a business center, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers at a workstation, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in an office, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers at an office desk, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in an office, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in a co-working space, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers in an office, hands down."
+      - "who is 30 years old with ${HAIR_CONCEPT}, holding papers at a conference table, hands down."
+
+
+  group_2:
+    settings:
+      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in study area, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in background, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in innovation lab, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office space, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in meeting area, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office, hands down."
+  
+  group_3:
+    settings:
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual attire, in the domestic environment, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothes, in the residence, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual outfit, in the domestic setting, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothes, in the household, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothing, in the home, hands down."
+  group_4:
+    settings:
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual wear, on a park bench, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing relaxed attire, in a park, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual outfit, sitting in a park, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothing, at a park, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing relaxed clothes, in a green space, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing informal outfit, at a public park, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing leisure attire, in an outdoor park, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing everyday garments, at a local park, hands down."
+  
+  group_5:
+    settings:
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, standing on a golf course with clubs"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, at a golf course with equipment"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, on the fairway with golf gear"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, near the green with golf bag"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, by the tee with golf accessories"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, at the driving range with clubs"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, on the putting green with gear"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, near the clubhouse with golf bag"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, on the course with golf equipment"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual golf attire, by the golf cart with clubs"
+
+
+out_dir: "condition_0/spare"
+clip_threshold: 0.28

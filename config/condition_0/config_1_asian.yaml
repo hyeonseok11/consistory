@@ -1,0 +1,48 @@
+run_type: batch
+gpu: 0
+seed: 41
+mask_dropout: 0.4
+same_latent: false
+style: "A photo of"
+subject: "good-looking ${PERSON_CONCEPT}"
+concept_token:
+  - "good-looking"
+  - "${PERSON_CONCEPT}"
+  - "30 years old"
+  - "${HAIR_CONCEPT}"
+# Settings divided into groups of 10
+settings_groups:
+#  group_1:
+#    settings:
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in study area, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in background, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in innovation lab, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office space, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in meeting area, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in office, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with large whiteboard in office, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in classroom, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in open office, hands down."
+#      - "who is 30 years old, with ${HAIR_CONCEPT}, with whiteboard in modern office, hands down."
+#
+#
+  group_2:
+    settings:
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual attire, in the domestic environment, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothes, in the residence, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual outfit, in the domestic setting, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothes, in the household, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothing, in the home, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual attire, in the residence, hands down."
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual clothes, in the cozy living room, hands down."
+
+  group_3:
+    settings:
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual cycling gear, cycling through a tree-lined avenue"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual cycling gear, cycling through a canopy of trees"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual cycling gear, cycling on a misty mountain trail"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual cycling gear, biking along a scenic coastal road"
+      - "who is 30 years old, with ${HAIR_CONCEPT}, wearing casual cycling gear, pedaling across a rustic wooden bridge"
+
+out_dir: "condition_0/spare"
+clip_threshold: 0.28
